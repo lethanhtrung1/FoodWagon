@@ -22,3 +22,8 @@ body {
     padding: 0;
     box-sizing: border-box;
 }
+
+table.dataTable th.dt-type-numeric,
+table.dataTable td.dt-type-numeric {
+    text-align: left;
+}

@@ -22,7 +22,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\FoodWagon.DataAccess\FoodWagon.DataAccess.csproj" />
-    <ProjectReference Include="..\FoodWagon.Models\FoodWagon.Models.csproj" />
     <ProjectReference Include="..\FoodWagon.Utility\FoodWagon.Utility.csproj" />
   </ItemGroup>
 
