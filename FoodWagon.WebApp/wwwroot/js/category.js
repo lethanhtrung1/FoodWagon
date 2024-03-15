@@ -8,8 +8,8 @@ function loadDataTable() {
     dataTable = $("#dataTable").DataTable({
         "ajax": { url: "/admin/category/getall" },
         "columns": [
-            { data: "name", "width": "40%" },
-            { data: "displayOrder", "width": "20%" },
+            { data: "name", "width": "30%" },
+            { data: "displayOrder", "width": "30%" },
             {
                 data: "id",
                 "render": function (data) {
