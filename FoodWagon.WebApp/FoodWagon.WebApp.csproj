@@ -26,25 +26,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="wwwroot\lib\css\apexcharts.css" />
-    <None Include="wwwroot\lib\css\app-dark.css" />
     <None Include="wwwroot\lib\css\app-light.css" />
-    <None Include="wwwroot\lib\css\app-rtl.css" />
-    <None Include="wwwroot\lib\css\bootstrap-datepicker.css" />
-    <None Include="wwwroot\lib\css\dataTables.bootstrap4.css" />
-    <None Include="wwwroot\lib\css\daterangepicker.css" />
-    <None Include="wwwroot\lib\css\dropzone.css" />
-    <None Include="wwwroot\lib\css\dropzone.min.css" />
-    <None Include="wwwroot\lib\css\feather.css" />
-    <None Include="wwwroot\lib\css\fullcalendar.css" />
-    <None Include="wwwroot\lib\css\jquery.steps.css" />
-    <None Include="wwwroot\lib\css\jquery.timepicker.css" />
-    <None Include="wwwroot\lib\css\perfect-scrollbar.css" />
-    <None Include="wwwroot\lib\css\quill.snow.css" />
-    <None Include="wwwroot\lib\css\select2-bootstrap4.css" />
-    <None Include="wwwroot\lib\css\select2.css" />
     <None Include="wwwroot\lib\css\simplebar.css" />
-    <None Include="wwwroot\lib\css\uppy.min.css" />
     <None Include="wwwroot\lib\js\apexcharts.custom.js" />
     <None Include="wwwroot\lib\js\apexcharts.min.js" />
     <None Include="wwwroot\lib\js\apps.js" />
