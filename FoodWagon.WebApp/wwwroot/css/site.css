@@ -23,7 +23,12 @@ body {
     box-sizing: border-box;
 }
 
+/* Dashboard */
 table.dataTable th.dt-type-numeric,
 table.dataTable td.dt-type-numeric {
     text-align: left;
+}
+
+.vertical .main-content {
+    min-height: calc(100vh - 45px);
 }

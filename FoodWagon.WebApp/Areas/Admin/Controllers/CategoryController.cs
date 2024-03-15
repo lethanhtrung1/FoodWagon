@@ -12,8 +12,7 @@ namespace FoodWagon.WebApp.Areas.Admin.Controllers {
 		}
 
 		public IActionResult Index() {
-			List<Category> categories = _unitOfWork.Category.GetAll().ToList();
-
+			List<Category> categories = _unitOfWork.Category.GetAll().OrderBy(x => x.DisplayOrder).ToList();
 			return View(categories);
 		}
 
@@ -26,6 +25,7 @@ namespace FoodWagon.WebApp.Areas.Admin.Controllers {
 			if(ModelState.IsValid) {
 				_unitOfWork.Category.Add(category);
 				_unitOfWork.Save();
+				TempData["success"] = "Category created successful";
 				return RedirectToAction("Index", "Category");
 			}
 			return View();
@@ -47,6 +47,7 @@ namespace FoodWagon.WebApp.Areas.Admin.Controllers {
 			if(ModelState.IsValid) {
 				_unitOfWork.Category.Update(category);
 				_unitOfWork.Save();
+				TempData["success"] = "Category updated successful";
 				return RedirectToAction("Index", "Category");
 			}
 			return View(category);
@@ -61,8 +62,8 @@ namespace FoodWagon.WebApp.Areas.Admin.Controllers {
 		}
 
 		[HttpDelete]
-		public IActionResult Delete(int? categoryId) {
-			Category categoryToBeDelete = _unitOfWork.Category.Get(x => x.Id == categoryId);
+		public IActionResult Delete(int? id) {
+			Category categoryToBeDelete = _unitOfWork.Category.Get(x => x.Id == id);
 			if(categoryToBeDelete == null) {
 				return Json(new { success = false, message = "Error while delete." });
 			}

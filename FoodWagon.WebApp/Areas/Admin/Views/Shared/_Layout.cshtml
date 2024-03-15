@@ -14,16 +14,20 @@
 	@* Datatables *@
 	<link rel="stylesheet" href="//cdn.datatables.net/2.0.0/css/dataTables.dataTables.min.css" />
 
+
 	<!-- Simple bar CSS -->
 	<link rel="stylesheet" href="~/lib/css/simplebar.css" />
 	<!-- App CSS -->
 	<link rel="stylesheet" href="~/lib/css/app-light.css" id="lightTheme" />
 
+	@* Toastr *@
+	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" />
+
 	<link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
 </head>
 <body class="vertical light">
 	<div class="wrapper">
-		<nav class="topnav navbar navbar-light">
+		<nav class="topnav navbar navbar-light" style="background-color: #ffffff">
 			<button type="button" class="navbar-toggler text-muted mt-2 p-0 mr-3 collapseSidebar">
 				<i class="bi bi-list"></i>
 			</button>
@@ -32,7 +36,7 @@
 			</form> *@
 		</nav>
 		<aside class="sidebar-left border-right bg-white shadow" id="leftSidebar" data-simplebar>
-			<a href="#"  class="btn collapseSidebar toggle-btn d-lg-none text-muted ml-2 mt-3" data-toggle="toggle">
+			<a href="#" class="btn collapseSidebar toggle-btn d-lg-none text-muted ml-2 mt-3" data-toggle="toggle">
 				<i class="fe fe-x"><span class="sr-only"></span></i>
 			</a>
 			<nav class="vertnav navbar navbar-light">
@@ -85,6 +89,7 @@
 
 		<div class="">
 			<main role="main" class="main-content pb-3">
+				<partial name="_Notification" />
 				@RenderBody()
 			</main>
 		</div>
@@ -101,6 +106,10 @@
 	@* Datatables *@
 	<script src="//cdn.datatables.net/2.0.0/js/dataTables.min.js" asp-append-version="true"></script>
 
+	@* toastr *@
+	<script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+	@* Sweetalert2 *@
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 	@await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
