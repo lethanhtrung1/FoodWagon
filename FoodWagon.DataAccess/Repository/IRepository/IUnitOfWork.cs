@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 namespace FoodWagon.DataAccess.Repository.IRepository {
 	public interface IUnitOfWork {
 		ICategoryRepository Category { get; }
+		IProductRepository Product { get; }
 		void Save();
 	}
 }
