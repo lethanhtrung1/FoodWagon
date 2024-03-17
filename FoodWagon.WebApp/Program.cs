@@ -2,6 +2,7 @@ using FoodWagon.DataAccess.Data;
 using FoodWagon.DataAccess.Repository;
 using FoodWagon.DataAccess.Repository.IRepository;
 using Microsoft.EntityFrameworkCore;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,6 +14,9 @@ builder.Services.AddDbContext<ApplicationDbContext>(options => {
 });
 
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+
+builder.Services.AddControllers().AddJsonOptions(x =>
+				x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
 
 var app = builder.Build();
 

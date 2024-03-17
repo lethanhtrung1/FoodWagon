@@ -12,7 +12,7 @@ namespace FoodWagon.DataAccess.Repository {
 
 		public void Update(Product product) {
 			var productFromDb = _dbContext.Products.FirstOrDefault(x => x.Id == product.Id);
-			if(productFromDb != null) {
+			if (productFromDb != null) {
 				productFromDb.Title = product.Title;
 				productFromDb.Description = product.Description;
 				productFromDb.CategoryId = product.CategoryId;
