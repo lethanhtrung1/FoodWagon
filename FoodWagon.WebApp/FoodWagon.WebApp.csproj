@@ -28,40 +28,14 @@
   <ItemGroup>
     <None Include="wwwroot\lib\css\app-light.css" />
     <None Include="wwwroot\lib\css\simplebar.css" />
-    <None Include="wwwroot\lib\js\apexcharts.custom.js" />
-    <None Include="wwwroot\lib\js\apexcharts.min.js" />
     <None Include="wwwroot\lib\js\apps.js" />
-    <None Include="wwwroot\lib\js\bootstrap-datepicker.min.js" />
-    <None Include="wwwroot\lib\js\bootstrap.min.js" />
-    <None Include="wwwroot\lib\js\Chart.min.js" />
     <None Include="wwwroot\lib\js\config.js" />
-    <None Include="wwwroot\lib\js\d3.min.js" />
-    <None Include="wwwroot\lib\js\datamaps-zoomto.js" />
-    <None Include="wwwroot\lib\js\datamaps.all.min.js" />
-    <None Include="wwwroot\lib\js\datamaps.custom.js" />
-    <None Include="wwwroot\lib\js\dataTables.bootstrap4.min.js" />
-    <None Include="wwwroot\lib\js\daterangepicker.js" />
-    <None Include="wwwroot\lib\js\dropzone.min.js" />
-    <None Include="wwwroot\lib\js\fullcalendar.custom.js" />
-    <None Include="wwwroot\lib\js\fullcalendar.js" />
-    <None Include="wwwroot\lib\js\gauge.min.js" />
-    <None Include="wwwroot\lib\js\jquery.dataTables.min.js" />
-    <None Include="wwwroot\lib\js\jquery.mask.min.js" />
-    <None Include="wwwroot\lib\js\jquery.min.js" />
-    <None Include="wwwroot\lib\js\jquery.sparkline.min.js" />
-    <None Include="wwwroot\lib\js\jquery.steps.min.js" />
-    <None Include="wwwroot\lib\js\jquery.stickOnScroll.js" />
-    <None Include="wwwroot\lib\js\jquery.timepicker.js" />
-    <None Include="wwwroot\lib\js\jquery.validate.min.js" />
-    <None Include="wwwroot\lib\js\moment.min.js" />
-    <None Include="wwwroot\lib\js\perfect-scrollbar.min.js" />
-    <None Include="wwwroot\lib\js\popper.min.js" />
     <None Include="wwwroot\lib\js\quill.min.js" />
-    <None Include="wwwroot\lib\js\select2.min.js" />
     <None Include="wwwroot\lib\js\simplebar.min.js" />
-    <None Include="wwwroot\lib\js\tinycolor-min.js" />
-    <None Include="wwwroot\lib\js\topojson.min.js" />
-    <None Include="wwwroot\lib\js\uppy.min.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\images\products\" />
   </ItemGroup>
 
 </Project>

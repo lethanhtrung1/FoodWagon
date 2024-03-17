@@ -11,10 +11,13 @@ namespace FoodWagon.Models {
 		public string Description { get; set; }
 		[Required]
 		public double Price { get; set; }
+
 		public int CategoryId { get; set; }
 		[ForeignKey("CategoryId")]
 		[ValidateNever]
 		public Category Category { get; set; }
-		public string? ProductImage { get; set; }
+
+		[ValidateNever]
+		public List<ProductImage> ProductImages { get; set; }
 	}
 }

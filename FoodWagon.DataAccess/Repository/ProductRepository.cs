@@ -11,7 +11,15 @@ namespace FoodWagon.DataAccess.Repository {
 		}
 
 		public void Update(Product product) {
-			_dbContext.Update(product);
+			var productFromDb = _dbContext.Products.FirstOrDefault(x => x.Id == product.Id);
+			if(productFromDb != null) {
+				productFromDb.Title = product.Title;
+				productFromDb.Description = product.Description;
+				productFromDb.CategoryId = product.CategoryId;
+				productFromDb.Price = product.Price;
+				// EF core automatically update ProductImages table
+				productFromDb.ProductImages = product.ProductImages;
+			}
 		}
 	}
 }

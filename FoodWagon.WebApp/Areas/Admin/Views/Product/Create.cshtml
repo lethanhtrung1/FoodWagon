@@ -1,0 +1,61 @@
+﻿@model ProductVM
+
+<div>
+	<div class="card shadow border-0 mt-3">
+		<div class="card-header bg-white bg-gradient ml-0 py-3">
+			<div class="row">
+				<div class="col-6">
+					<h2 style="color: #FC6736">New Product</h2>
+				</div>
+				<div class="col-6 text-end mt-2">
+					<a asp-action="Index" class="btn btn-sm btn-outline-primary">
+						<i class="bi bi-arrow-left me-2"></i>
+						Back to list
+					</a>
+				</div>
+			</div>
+		</div>
+		<div class="card-body p-4">
+			<form method="post" enctype="multipart/form-data">
+				<div class="form-group">
+					<label for="product-title">Title</label>
+					<input type="text" asp-for="Product.Title" class="form-control" id="product-title" placeholder="Title">
+					<span class="text-danger" asp-validation-for="Product.Title"></span>
+				</div>
+				<div class="form-row">
+					<div class="form-group col-md-6">
+						<label for="custome-select">Category</label>
+						<select asp-for="@Model.Product.CategoryId" asp-items="@Model.CategoryList" class="custom-select" id="custom-select">
+							<option disabled selected>-- Category --</option>
+						</select>
+					</div>
+					<div class="form-group col-md-6">
+						<label for="product-price">Price</label>
+						<input type="text" asp-for="Product.Price" class="form-control" id="product-price" placeholder="Price">
+						<span class="text-danger" asp-validation-for="Product.Price"></span>
+					</div>
+				</div>
+				<div class="form-group mt-3">
+					<textarea asp-for="Product.Description" class="form-control" rows="5" placeholder="Description"></textarea>
+				</div>
+				<div class="form-group mt-3">
+					<input type="file" name="files" class="form-control" multiple />
+				</div>
+				<button type="submit" class="btn btn-primary">Create</button>
+			</form>
+		</div>
+	</div>
+</div>
+
+@section Scripts {
+	@{
+		<partial name="_ValidationScriptsPartial" />
+	}
+	<script>
+		tinymce.init({
+			selector: 'textarea',
+			plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount linkchecker',
+			toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat',
+		});
+	</script>
+}

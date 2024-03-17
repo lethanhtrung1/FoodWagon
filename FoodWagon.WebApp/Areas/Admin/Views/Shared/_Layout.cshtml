@@ -15,6 +15,7 @@
 	<link rel="stylesheet" href="//cdn.datatables.net/2.0.0/css/dataTables.dataTables.min.css" />
 	<!-- Simple bar CSS -->
 	<link rel="stylesheet" href="~/lib/css/simplebar.css" />
+	<link rel="stylesheet" href="~/lib/css/quill.snow.css" />
 	<!-- App CSS -->
 	<link rel="stylesheet" href="~/lib/css/app-light.css" id="lightTheme" />
 	@* Toastr *@
@@ -45,7 +46,7 @@
 				</div>
 				<ul class="navbar-nav flex-fill w-100 mb-2">
 					<li class="nav-item w-100">
-						<a href="#" class="nav-link">
+						<a asp-area="Admin" asp-controller="Home" asp-action="Index" class="nav-link">
 							<i class="bi bi-house-door-fill"></i>
 							<span class="ml-3 item-text">Dashboard</span>
 						</a>
@@ -98,6 +99,7 @@
 	@* Theme TiniDashboard *@
 	<script src="~/lib/js/simplebar.min.js"></script>
 	<script src="~/lib/js/apps.js"></script>
+	<script src="~/lib/js/quill.min.js"></script>
 
 	@* Datatables *@
 	<script src="//cdn.datatables.net/2.0.0/js/dataTables.min.js" asp-append-version="true"></script>
@@ -106,6 +108,8 @@
 	<script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 	@* Sweetalert2 *@
 	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+	@* Tinymce *@
+	<script src="https://cdn.tiny.cloud/1/7p1vkmumjx1vd9oo212x4qhbns8lvbk16ltwhhh2uryq0s2w/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
 	@await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
