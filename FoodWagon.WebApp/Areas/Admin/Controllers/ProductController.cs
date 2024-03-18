@@ -99,11 +99,15 @@ namespace FoodWagon.WebApp.Areas.Admin.Controllers {
 
 		[HttpGet]
 		public IActionResult GetAll() {
-			IEnumerable<Product> products = _unitOfWork.Product.GetAll(includeProperties: "Category,ProductImages");
-			//foreach (var product in products) {
-			//	product.ProductImages = _unitOfWork.ProductImage.GetAll(x => x.ProductId == product.Id).ToList();
-			//}
-			return Json(new { data = products });
+			try {
+				IEnumerable<Product> products = _unitOfWork.Product.GetAll(includeProperties: "Category,ProductImages");
+				//foreach (var product in products) {
+				//	product.ProductImages = _unitOfWork.ProductImage.GetAll(x => x.ProductId == product.Id).ToList();
+				//}
+				return Json(new { data = products });
+			} catch (Exception) {
+				throw;
+			}
 		}
 
 		[HttpDelete]

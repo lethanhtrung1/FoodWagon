@@ -9,10 +9,10 @@ function loadDataTable() {
         "ajax": { url: '/Admin/Product/GetAll' },
         "columns": [
             {
-                data: "productImages[0].imageUrl",
+                data: "productImages",
                 "render": function (data) {
                     return `
-                        <img src="${data}" style="width: 50px" />
+                        <img src="${data[0].imageUrl}" style="width: 50px" />
                     `
                 },
                 "width": "15%"
