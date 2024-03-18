@@ -23,16 +23,21 @@
 					<span class="text-danger" asp-validation-for="Product.Title"></span>
 				</div>
 				<div class="form-row">
-					<div class="form-group col-md-6">
+					<div class="form-group col-md-4">
 						<label for="custome-select">Category</label>
 						<select asp-for="@Model.Product.CategoryId" asp-items="@Model.CategoryList" class="custom-select" id="custom-select">
 							<option disabled selected>-- Category --</option>
 						</select>
 					</div>
-					<div class="form-group col-md-6">
+					<div class="form-group col-md-4">
 						<label for="product-price">Price</label>
 						<input type="text" asp-for="Product.Price" class="form-control" id="product-price" placeholder="Price">
 						<span class="text-danger" asp-validation-for="Product.Price"></span>
+					</div>
+					<div class="form-group col-md-4">
+						<label for="product-price">Sale Off</label>
+						<input type="text" asp-for="Product.SaleOff" class="form-control" id="product-price" placeholder="Sale">
+						<span class="text-danger" asp-validation-for="Product.SaleOff"></span>
 					</div>
 				</div>
 				<div class="form-group mt-3">

@@ -11,6 +11,8 @@ namespace FoodWagon.Models {
 		public string Description { get; set; }
 		[Required]
 		public double Price { get; set; }
+		[Range(0, 100)]
+		public int SaleOff {  get; set; }
 
 		public int CategoryId { get; set; }
 		[ForeignKey("CategoryId")]

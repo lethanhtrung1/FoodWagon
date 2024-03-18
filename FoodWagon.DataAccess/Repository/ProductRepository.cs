@@ -17,6 +17,7 @@ namespace FoodWagon.DataAccess.Repository {
 				productFromDb.Description = product.Description;
 				productFromDb.CategoryId = product.CategoryId;
 				productFromDb.Price = product.Price;
+				productFromDb.SaleOff = product.SaleOff;
 				// EF core automatically update ProductImages table
 				productFromDb.ProductImages = product.ProductImages;
 			}

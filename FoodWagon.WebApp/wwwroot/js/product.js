@@ -8,9 +8,19 @@ function loadDataTable() {
     dataTable = $('#dataTable').DataTable({
         "ajax": { url: '/Admin/Product/GetAll' },
         "columns": [
-            { data: 'title', "width": "25%" },
-            { data: 'price', "width": "15%" },
-            { data: 'category.name', "width": "15%" },
+            {
+                data: "productImages[0].imageUrl",
+                "render": function (data) {
+                    return `
+                        <img src="${data}" style="width: 50px" />
+                    `
+                },
+                "width": "15%"
+            },
+            { data: 'title', "width": "20%" },
+            { data: 'price', "width": "10%" },
+            { data: 'saleOff', "width": "15%" },
+            { data: 'category.name', "width": "10%" },
             {
                 data: 'id',
                 "render": function (data) {
@@ -27,7 +37,7 @@ function loadDataTable() {
                         </div>
                     `;
                 },
-                "width": "45%"
+                "width": "30%"
             },
         ],
     });
@@ -35,6 +45,7 @@ function loadDataTable() {
 
 // Handle Delete
 function Delete(url) {
+    console.log(url);
     Swal.fire({
         title: "Are you sure?",
         text: "You won't be able to revert this!",
