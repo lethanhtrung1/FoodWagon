@@ -1,4 +1,5 @@
 using FoodWagon.DataAccess.Data;
+using FoodWagon.DataAccess.DbInitializer;
 using FoodWagon.DataAccess.Repository;
 using FoodWagon.DataAccess.Repository.IRepository;
 using FoodWagon.Models;
@@ -29,6 +30,7 @@ builder.Services.ConfigureApplicationCookie(options => {
 
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped<IAuthService, AuthService>();
+builder.Services.AddScoped<IDbInitializer, DbInitializer>();
 
 builder.Services.AddControllers().AddJsonOptions(x => {
 	x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
