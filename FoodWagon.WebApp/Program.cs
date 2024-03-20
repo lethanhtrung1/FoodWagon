@@ -2,10 +2,8 @@ using FoodWagon.DataAccess.Data;
 using FoodWagon.DataAccess.Repository;
 using FoodWagon.DataAccess.Repository.IRepository;
 using FoodWagon.Models;
-using FoodWagon.WebApp.Areas.Account.Models;
 using FoodWagon.WebApp.Areas.Account.Services;
 using FoodWagon.WebApp.Areas.Account.Services.IService;
-using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System.Text.Json.Serialization;
@@ -15,19 +13,13 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
-builder.Services.Configure<JwtOptions>(builder.Configuration.GetSection("ApiSettings:JwtOptions"));
-
 builder.Services.AddDbContext<ApplicationDbContext>(options => {
 	options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
 
-builder.Services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultTokenProviders();
-
-//builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(options => {
-//	options.ExpireTimeSpan = TimeSpan.FromHours(5);
-//	options.LoginPath = $"/Account/Auth/Login";
-//	options.AccessDeniedPath = $"/Account/Auth/AccessDenied";
-//});
+builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
+	.AddEntityFrameworkStores<ApplicationDbContext>().AddSignInManager<SignInManager<ApplicationUser>>()
+	.AddDefaultTokenProviders();
 
 builder.Services.ConfigureApplicationCookie(options => {
 	options.LoginPath = $"/Account/Auth/Login";
@@ -37,7 +29,6 @@ builder.Services.ConfigureApplicationCookie(options => {
 
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped<IAuthService, AuthService>();
-builder.Services.AddScoped<IJwtTokenGenerator, JwtTokenGenerator>();
 
 builder.Services.AddControllers().AddJsonOptions(x => {
 	x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;

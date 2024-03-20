@@ -1,6 +1,33 @@
-﻿<li class="nav-item">
-	<a class="nav-link text-dark" id="register" asp-area="Account" asp-controller="Auth" asp-action="Register">Register</a>
-</li>
-<li class="nav-item">
-	<a class="nav-link text-dark" id="login" asp-area="Account" asp-controller="Auth" asp-action="Login">Login</a>
-</li>
+﻿@using Microsoft.AspNetCore.Identity
+
+@inject UserManager<IdentityUser> UserManager
+@inject SignInManager<IdentityUser> SignInManager
+
+@if(SignInManager.IsSignedIn(User)) {
+	<li class="nav-item dropdown">
+		<a class="nav-link text-white dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+			<i class="bi bi-bell-fill mr-2"></i>
+			Hello @UserManager.GetUserName(User)!
+		</a>
+		<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+			<li>
+				<a class="dropdown-item" href="#" title="Manage">
+					<i class="bi bi-person m-lg-1"></i>
+					Account
+				</a>
+			</li>
+			<li><a class="dropdown-item" href="#"><i class="bi bi-bag m-lg-1"></i>&nbsp;Purchase</a></li>
+			<li><a class="dropdown-item" href="#"><i class="bi bi-bag m-lg-1"></i>&nbsp;Order</a></li>
+			
+			<li><hr class="dropdown-divider"></li>
+			<li><a class="dropdown-item" href="#"><i class="bi bi-gear m-lg-1"></i>&nbsp;Setting</a></li>
+		</ul>
+	</li>
+} else {
+	<li class="nav-item">
+		<a class="nav-link text-dark" id="register" asp-area="Account" asp-controller="Auth" asp-action="Register">Register</a>
+	</li>
+	<li class="nav-item">
+		<a class="nav-link text-dark" id="login" asp-area="Account" asp-controller="Auth" asp-action="Login">Login</a>
+	</li>
+}

@@ -1,11 +1,11 @@
 html {
-  font-size: 14px;
+    font-size: 14px;
 }
 
 @media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+    html {
+        font-size: 16px;
+    }
 }
 
 /*.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
@@ -13,8 +13,8 @@ html {
 }*/
 
 html {
-  position: relative;
-  min-height: 100%;
+    position: relative;
+    min-height: 100%;
 }
 
 body {
@@ -31,4 +31,23 @@ table.dataTable td.dt-type-numeric {
 
 .vertical .main-content {
     min-height: calc(100vh - 45px);
+}
+
+.form-control,
+.form-select,
+.form-check-input {
+    background-color: #fff;
+}
+
+    .form-control:focus {
+        background-color: #fff;
+    }
+
+label {
+    font-weight: 300 !important;
+}
+
+.form-floating > .form-select {
+    padding-top: 0;
+    padding-bottom: 0;
 }

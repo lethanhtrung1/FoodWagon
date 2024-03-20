@@ -1,1 +1,101 @@
-﻿<h2>Register Page</h2>
+﻿@model RegisterVM
+
+@{
+	ViewData["Title"] = "Register";
+}
+
+<div class="container" style="margin-top: 66px">
+	<div class="row flex-row-reverse pt-4 justify-content-between mb-4">
+		<div class="col-md-4 card border border-1 rounded-3 p-3 shadow">
+			@if (User.IsInRole(SD.Role_Admin)) {
+				<h3 class="text-primary text-center">Register - Admin PORTAL</h3>
+			} else {
+				<h2 class="text-primary text-center">@ViewData["Title"]</h2>
+			}
+			<div class="">
+				<form id="registerForm" class="card-body row pt-0 pb-0" method="post">
+					<h5 class="fw-lighter text-center mb-3">Create a new account.</h5>
+					<hr />
+					<div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+
+					<div class="form-floating mb-3 col-md-12 mt-2">
+						<input asp-for="Email" class="form-control" autocomplete="username" aria-required="true" />
+						<label asp-for="Email" class="form-label" style="padding-left: 55px">Email</label>
+						<span asp-validation-for="Email" class="text-danger" style="font-size:14px"></span>
+					</div>
+
+					<div class="form-floating mb-3 col-md-12">
+						<input asp-for="Password" class="form-control" autocomplete="new-password" aria-required="true" />
+						<label asp-for="Password" class="form-label" style="padding-left: 55px">Password</label>
+						<span asp-validation-for="Password" class="text-danger" style="font-size:14px"></span>
+					</div>
+					<div class="form-floating mb-3 col-md-12">
+						<input asp-for="ConfirmPassword" class="form-control" autocomplete="new-password" aria-required="true" />
+						<label asp-for="ConfirmPassword" class="form-label" style="padding-left: 55px">Confirm Password</label>
+						<span asp-validation-for="ConfirmPassword" class="text-danger" style="font-size:14px"></span>
+					</div>
+
+					<div class="form-floating mb-3 col-md-12">
+						<input asp-for="PhoneNumber" class="form-control" />
+						<label asp-for="PhoneNumber" class="form-label" style="padding-left: 55px">Phone Number</label>
+						<span asp-validation-for="PhoneNumber" class="text-danger" style="font-size:14px"></span>
+					</div>
+
+					<div class="form-floating mb-3 col-md-12">
+						<select asp-for="Role" asp-items="@Model.RoleList" class="form-select">
+							<option disabled selected>-- Select Role --</option>
+						</select>
+					</div>
+					@* @if (User.IsInRole(SD.Role_Admin)) {
+						<div class="form-floating mb-3 col-md-12">
+							<select asp-for="Input.Role" asp-items="@Model.Input.RoleList" class="form-select">
+								<option disabled selected>-- Select Role --</option>
+							</select>
+						</div>
+						<div class="form-floating col-md-12">
+							<select asp-for="Input.CompanyId" asp-items="@Model.Input.CompanyList" class="form-select" style="display:none">
+								<option disabled selected>-- Select Company --</option>
+							</select>
+						</div>
+					} *@
+				
+					<div>
+						<button id="registerSubmit" type="submit" 
+								class="w-100 btn btn-lg text-white btn-gradient mb-3 mt-3" 
+								style="background-color:#FF6868">
+							Register
+						</button>
+					</div>
+
+					<div class="text-center pb-2">
+						<span style="font-size:13px">Already have an account?</span>
+						<a asp-area="Account" asp-controller="Auth" asp-action="Login" class="text-primary" style="font-size:13px">
+							Sign In
+						</a>
+					</div>
+				</form>
+			</div>
+		</div>
+		<div class="col-md-6 col-md-offset-2">
+			@if (User.IsInRole(SD.Role_Admin)) {
+				<h1 class="fw-normal">Create a new Account</h1>
+			} else {
+				<br />
+				<br />
+				<br />
+				<img src="~/images/logo.svg" width="150px" />
+				<br />
+				<br />
+				<h1 class="fw-bold text-white">
+					Wellcome to
+					<br />
+					<h1 class="text-white" style="font-size: 60px">FoodWagon</h1>
+				</h1>
+			}
+		</div>
+	</div>
+</div>
+
+@section Scripts {
+	<partial name="_ValidationScriptsPartial" />
+}
