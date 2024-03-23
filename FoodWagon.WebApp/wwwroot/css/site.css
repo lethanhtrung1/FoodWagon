@@ -51,3 +51,22 @@ label {
     padding-top: 0;
     padding-bottom: 0;
 }
+
+#formLogout,
+#formLogout {
+    display: block;
+    width: 100%;
+    padding: 0.25rem 1rem;
+    clear: both;
+    font-weight: 400;
+    color: #424242;
+    text-align: inherit;
+    white-space: nowrap;
+    background-color: transparent;
+    border: 0;
+}
+
+.search-input {
+    border-radius: 20px;
+    border: 1px solid #ff6a00;
+}

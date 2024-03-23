@@ -40,7 +40,7 @@ namespace FoodWagon.WebApp.Areas.Account.Controllers {
 				var result = await _signInManager.PasswordSignInAsync(loginVM.Email, loginVM.Password, loginVM.RememberMe, lockoutOnFailure: false);
 				if (result.Succeeded) {
 					TempData["success"] = "User logged in.";
-					return RedirectToAction("Index", "Home");
+					return RedirectToAction("Index", "Home", new {area = "Customer"});
 				}
 				if (result.RequiresTwoFactor) {
 					// ...
@@ -74,6 +74,8 @@ namespace FoodWagon.WebApp.Areas.Account.Controllers {
 				await _userStore.SetUserNameAsync(user, registerVM.Email, CancellationToken.None);
 				
 				user.PhoneNumber = registerVM.PhoneNumber;
+				// user.Name = registerVM.Email;
+				user.Email = registerVM.Email;
 
 				// Create user
 				var result = await _userManager.CreateAsync(user, registerVM.Password);
@@ -99,7 +101,7 @@ namespace FoodWagon.WebApp.Areas.Account.Controllers {
 						} else {
 							await _signInManager.SignInAsync(user, isPersistent: false);
 						}
-						return RedirectToAction("Index", "Home");
+						return RedirectToAction("Login", "Auth");
 					}
 				}
 			}
@@ -115,8 +117,12 @@ namespace FoodWagon.WebApp.Areas.Account.Controllers {
 			}
 		}
 
+		public IActionResult Logout() {
+			return View();
+		}
+
 		[HttpPost]
-		public async Task<IActionResult> Logout() {
+		public async Task<IActionResult> LogoutAPI() {
 			await _signInManager.SignOutAsync();
 			return RedirectToAction("Login", "Auth");
 		}

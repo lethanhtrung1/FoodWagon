@@ -75,25 +75,26 @@
 <section class="py-5 overflow-hidden">
 	<div class="container">
 		<div class="row gx-3">
-			@foreach(var item in Model) {
+			@foreach (var item in Model) {
 				<div class="col-sm-6 col-md-4 col-lg-3 h-100 mb-5">
 					<div class="card card-span h-100 text-white rounded-3 shadow">
-						@if(item.ProductImages != null && item.ProductImages.Count() > 0) {
-							<img src="@item.ProductImages.FirstOrDefault().ImageUrl" 
-							class="img-fluid rounded-3 h-100" />
+						@if (item.ProductImages != null && item.ProductImages.Count() > 0) {
+							<img src="@item.ProductImages.FirstOrDefault().ImageUrl"
+								 class="img-fluid rounded-3 h-100" />
 						} else {
 							<img src="https://placehold.co/500x600/png" class="img-fluid rounded-3 h-100" />
 						}
 						<div class="card-img-overlay ps-0" style="bottom: 150px">
 							<span class="badge bg-danger p-2 ms-3">
 								<i class="bi bi-tag-fill me-1 fs-0"></i>
-								@if(item.SaleOff != null && item.SaleOff > 0) {
+								@if (item.SaleOff != null && item.SaleOff > 0) {
 									<span class="fs-0">@item.SaleOff % off</span>
 								}
 							</span>
 						</div>
 						<div class="card-body ps-3">
-							<a asp-area="Admin" asp-controller="Home" asp-action="Index" class="flex-1">
+							<a asp-area="Customer" asp-controller="Home" asp-action="Details"
+							   asp-route-productId="@item.Id" class="flex-1">
 								<h5 class="fw-bold text-1000 text-truncate mb-1">@item.Title</h5>
 							</a>
 							<div class="d-flex justify-content-between mb-2">
@@ -120,7 +121,8 @@
 							</div>
 						</div>
 						<div class="d-grid gap-2">
-							<a class="btn btn-lg btn-danger" asp-action="Details" asp-route-productId="@item.Id" role="button">
+							<a class="btn btn-lg btn-danger bg-gradient"
+							   asp-action="Details" asp-route-productId="@item.Id" role="button">
 								Order now
 							</a>
 						</div>
