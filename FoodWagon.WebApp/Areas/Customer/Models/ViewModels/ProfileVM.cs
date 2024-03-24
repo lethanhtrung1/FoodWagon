@@ -2,7 +2,7 @@
 
 namespace FoodWagon.WebApp.Areas.Customer.Models.ViewModels {
 	public class ProfileVM {
-		public string UserName { get; set; }
+		public string Username { get; set; }
 		[Phone]
 		[Display(Name = "Phone number")]
 		public string PhoneNumber { get; set; }
