@@ -13,6 +13,7 @@ namespace FoodWagon.DataAccess.Repository {
 		public IProductRepository Product { get; private set; }
 		public IProductImageRepository ProductImage { get; private set; }
 		public IApplicationUserRepository ApplicationUser { get; private set; }
+		public IShoppingCartRepository ShoppingCart { get; private set; }
 
 		public UnitOfWork(ApplicationDbContext dbContext) {
 			_dbContext = dbContext;
@@ -20,6 +21,7 @@ namespace FoodWagon.DataAccess.Repository {
 			Product = new ProductRepository(_dbContext);
 			ProductImage = new ProductImageRepository(_dbContext);
 			ApplicationUser = new ApplicationUserRepository(_dbContext);
+			ShoppingCart = new ShoppingCartRepository(_dbContext);
 		}
 
 		public void Save() {

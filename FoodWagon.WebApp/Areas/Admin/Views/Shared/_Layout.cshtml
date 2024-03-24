@@ -22,15 +22,32 @@
 
 	<link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
 </head>
-<body class="vertical light">
+<body class="vertical light hover">
 	<div class="wrapper">
 		<nav class="topnav navbar navbar-light" style="background-color: #ffffff">
 			<button type="button" class="navbar-toggler text-muted mt-2 p-0 mr-3 collapseSidebar">
 				<i class="bi bi-list"></i>
 			</button>
-			@* <form class="form-inline mr-auto searchform text-muted">
-				<input class="form-control mr-sm-2 bg-transparent border-1 pl-4 text-muted" type="search" placeholder="Type something..." aria-label="Search" />
-			</form> *@
+			<form class="form-inline mr-auto searchform text-muted">
+				<input class="form-control mr-sm-2 bg-transparent border-1 pl-4 text-muted" 
+					type="search" placeholder="Type something..." aria-label="Search" style="border-radius: 20px; width: 300px" />
+			</form>
+			<ul class="nav">
+				<li class="nav-item nav-notif">
+					<a class="nav-link text-muted my-2" href="#" data-toggle="modal" data-target=".modal-notif">
+						<i class="bi bi-bell me-2"></i>
+						<span class="dot dot-md bg-success"></span>
+					</a>
+				</li>
+				<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle text-muted pr-0" href="#" id="navbarDropdownMenuLink"
+					   role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						<span class="avatar avatar-sm mt-2">
+							<img src="~/images/avatar/avatar.png" alt="..." class="avatar-img rounded-circle">
+						</span>
+					</a>
+				</li>
+			</ul>
 		</nav>
 		<aside class="sidebar-left border-right bg-white shadow" id="leftSidebar" data-simplebar>
 			<a href="#" class="btn collapseSidebar toggle-btn d-lg-none text-muted ml-2 mt-3" data-toggle="toggle">
@@ -45,8 +62,14 @@
 				</div>
 				<ul class="navbar-nav flex-fill w-100 mb-2">
 					<li class="nav-item w-100">
+						<a asp-area="Customer" asp-controller="Home" asp-action="Index" class="nav-link">
+							<i class="bi bi-house-fill"></i>
+							<span class="ml-3 item-text">Home</span>
+						</a>
+					</li>
+					<li class="nav-item w-100">
 						<a asp-area="Admin" asp-controller="Home" asp-action="Index" class="nav-link">
-							<i class="bi bi-house-door-fill"></i>
+							<i class="bi bi-reception-3"></i>
 							<span class="ml-3 item-text">Dashboard</span>
 						</a>
 					</li>
@@ -80,11 +103,22 @@
 						</a>
 					</li>
 				</ul>
+
+				<ul class="navbar-nav flex-fill flex-1 w-100">
+					<li class="nav-item w-100">
+						<form method="post" asp-area="Account" asp-controller="Auth" asp-action="LogoutAPI">
+							<button id="logout" type="submit" class="nav-link btn btn-link w-100 text-left border-0">
+								<i class="bi bi-box-arrow-right"></i>
+								<span class="ml-3 item-text">Logout</span>
+							</button>
+						</form>
+					</li>
+				</ul>
 			</nav>
 		</aside>
 
 		<div class="">
-			<main role="main" class="main-content pb-3">
+			<main role="main" class="main-content">
 				<partial name="_Notification" />
 				@RenderBody()
 			</main>

@@ -10,6 +10,7 @@ namespace FoodWagon.DataAccess.Repository.IRepository {
 		IProductRepository Product { get; }
 		IProductImageRepository ProductImage { get; }
 		IApplicationUserRepository ApplicationUser { get; }
+		IShoppingCartRepository ShoppingCart { get; }
 		void Save();
 	}
 }

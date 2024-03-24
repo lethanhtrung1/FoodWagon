@@ -17,6 +17,11 @@ html {
     min-height: 100%;
 }
 
+::-webkit-scrollbar {
+    width: 0px;
+    background: transparent; /* make scrollbar transparent */
+}
+
 body {
     margin: 0;
     padding: 0;
@@ -29,8 +34,9 @@ table.dataTable td.dt-type-numeric {
     text-align: left;
 }
 
-.vertical .main-content {
-    min-height: calc(100vh - 45px);
+.vertical .main-content,
+.vertical.hover {
+    min-height: calc(100vh - 69px) !important;
 }
 
 .form-control,
@@ -69,4 +75,14 @@ label {
 .search-input {
     border-radius: 20px;
     border: 1px solid #ff6a00;
+}
+
+.dropdown-toggle::after {
+    display: none;
+    content: "";
+    font-size: 1rem
+}
+
+.searchform:before {
+    content: "";
 }

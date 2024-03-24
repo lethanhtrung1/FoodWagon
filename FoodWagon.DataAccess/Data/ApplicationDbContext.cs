@@ -13,6 +13,7 @@ namespace FoodWagon.DataAccess.Data {
 		public DbSet<Product> Products { get; set; }
 		public DbSet<ProductImage> ProductImages { get; set; }
 		public DbSet<ApplicationUser> ApplicationUsers { get; set; }
+		public DbSet<ShoppingCart> ShoppingCarts { get; set; }
 
 		#endregion
 
