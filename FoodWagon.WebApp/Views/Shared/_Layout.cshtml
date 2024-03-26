@@ -40,16 +40,16 @@
 								<a class="nav-link text-dark" asp-area="Customer" asp-controller="Home" asp-action="Index">Home</a>
 							</li>
 							<li class="nav-item">
-								<a class="nav-link text-dark" asp-area="Customer" asp-controller="Home" asp-action="Index">About</a>
+								<a class="nav-link text-dark" asp-area="Customer" asp-controller="Home" asp-action="About">About</a>
 							</li>
 							<li class="nav-item">
 								<a class="nav-link text-dark" asp-area="Customer" asp-controller="Home" asp-action="Index">Contact</a>
 							</li>
 							<li class="nav-item">
-								<a class="nav-link text-dark" asp-area="Customer" asp-controller="Home" asp-action="Index">Blog</a>
+								<a class="nav-link text-dark" asp-area="Customer" asp-controller="Home" asp-action="Blog">Blog</a>
 							</li>
 							<li class="nav-item">
-								<a class="nav-link text-dark" asp-area="Customer" asp-controller="Home" asp-action="Index">
+								<a class="nav-link text-dark" asp-area="Customer" asp-controller="Cart" asp-action="Index">
 									<i class="bi bi-cart"></i>
 								</a>
 							</li>
@@ -67,8 +67,8 @@
 			</div>
 		</nav>
 	</header>
-	<div class="">
-		<main role="main" class="pb-3">
+	<div>
+		<main role="main">
 			<partial name="_Notification" />
 			@RenderBody()
 		</main>

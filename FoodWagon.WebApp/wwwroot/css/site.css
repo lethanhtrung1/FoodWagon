@@ -83,6 +83,30 @@ label {
     font-size: 1rem
 }
 
+/* search on admin page */
 .searchform:before {
     content: "";
+}
+
+/* css text max lines */
+.text-custom {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* number of lines to show */
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+.text-custom-one-line {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 1; /* number of lines to show */
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+/* custom drop down */
+.dropdown-menu[data-bs-popper] {
+    left: 50% !important;
+    transform: translate(-50%, 0px) !important;
 }

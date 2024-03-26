@@ -13,18 +13,17 @@
 		<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
 			<li>
 				<a class="dropdown-item" asp-area="Customer" asp-controller="Profile" asp-action="Index" title="Manage">
-					<i class="bi bi-person me-2"></i>Account
+					<i class="bi bi-person me-2"></i>&nbsp;Account
 				</a>
 			</li>
 			<li><a class="dropdown-item" href="#"><i class="bi bi-bag me-2"></i>&nbsp;Purchase</a></li>
-			<li><a class="dropdown-item" href="#"><i class="bi bi-bag me-2"></i>&nbsp;Order</a></li>
 			<li><a class="dropdown-item" href="#"><i class="bi bi-gear me-2"></i>&nbsp;Setting</a></li>
 
 			<li><hr class="dropdown-divider"></li>
 			<li>
-				<form id="formLogout" class="dropdown-item" method="post" style="margin: -10px 0"
+				<form id="formLogout" class="dropdown-item text-start" method="post" style="margin: -10px 0"
 					  asp-area="Account" asp-controller="Auth" asp-action="LogoutAPI">
-					<button id="logout" type="submit" class="nav-link btn btn-link text-black border-0">
+					<button id="logout" type="submit" class="nav-link btn btn-link text-black border-0" style="padding-left: 0">
 						<i class="bi bi-box-arrow-right me-2"></i> Logout
 					</button>
 				</form>
