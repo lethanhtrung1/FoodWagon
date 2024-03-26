@@ -1,0 +1,106 @@
+﻿@model ShoppingCartVM
+
+<div class="container" style="margin-top: 100px">
+	<form method="post" class="pt-4 mb-4">
+		<ol class="breadcrumb float-sm-right">
+			<li class="breadcrumb-item">
+				<a asp-area="Customer" asp-controller="Home" asp-action="Index" style="text-decoration:none;color:#000">Home</a>
+			</li>
+			<li class="breadcrumb-item">Cart</li>
+		</ol>
+
+		<div class="card shadow border-0">
+			<div class="card-header bg-gradient text-light ml-0 py-4" style="background-color: #9195F6">
+				<div class="row px-4">
+					<div class="col-6">
+						<h5 class="pt-2 text-white">Shopping Cart</h5>
+					</div>
+					@* <div class="col-6 text-end">
+					<a asp-area="Customer" asp-action="Index" asp-controller="Home" class="btn btn-sm text-white" style="background-color: #FF7ED4">
+					<small><i class="bi bi-arrow-left"></i>&nbsp;CONTINUE SHOPPING</small>
+					</a>
+					</div> *@
+				</div>
+			</div>
+			@if (Model.ShoppingCarts == null || Model.ShoppingCarts.Count() == 0) {
+				<div class="card-body my-4">
+					<div class="row pb-3 d-flex justify-content-center">
+						<img src="~/images/gallery/no_cart.png" style="width: 30%" />
+					</div>
+				</div>
+			} else {
+				<div class="card-body my-4">
+					<div class="row mb-3 pb-3">
+						<div class="col-md-10 offset-md-1">
+							@foreach (var item in Model.ShoppingCarts) {
+								<div class="row border-bottom pb-4 pt-2">
+									<div class="d-none d-lg-block col-lg-1 text-center py-2 mt-2">
+										@if (item.Product.ProductImages != null && item.Product.ProductImages.Count() > 0) {
+											<img src="@item.Product.ProductImages.FirstOrDefault().ImageUrl" class="rounded" width="100%" />
+										} else {
+											<img src="https://placehold.co/500x600/png" class="rounded" width="100%" />
+										}
+									</div>
+									<div class="col-12 col-lg-5 pt-md-3">
+										<a asp-asp-area="Customer" asp-controller="Home" asp-action="Details"
+										   asp-route-productId="@item.ProductId" class="text-uppercase text-secondary text-custom-one-line">
+											<strong>@item.Product.Title</strong>
+										</a>
+										<span class="text-custom"><small style="font-size:13px">@Html.Raw(item.Product.Description)</small></span>
+									</div>
+									<div class="col-12 col-lg-6 row">
+										<div class="col-3 text-md-left pt-2 pt-md-4">
+											<h6 class="fw-semibold">
+												@item.Price.ToString("c")
+												<span class="text-muted">&nbsp;x&nbsp;</span>@item.Count
+											</h6>
+										</div>
+										<div class="col-6 col-sm-4 col-lg-6 pt-2 mt-2">
+											<div class="w-75 btn-group mt-1" role="group">
+												<a asp-action="MinusQuantityInCart" asp-route-cartId="@item.Id"
+												   class="btn btn-secondary fs--1 border-0"
+												   style="border-top-left-radius: 16px; border-bottom-left-radius: 16px">
+													<i class="bi bi-dash-square"></i>
+												</a>&nbsp;
+												<a asp-action="PlusQuantityInCart" asp-route-cartId="@item.Id"
+												   class="btn btn-secondary fs--1 border-0"
+												   style="border-top-right-radius: 16px; border-bottom-right-radius: 16px">
+													<i class="bi bi-plus-square"></i>
+												</a>
+											</div>
+										</div>
+										<div class="col-3 col-sm-4 col-lg-2 offset-lg-1 pt-2 mt-3">
+											<a asp-action="RemoveItemInCart" asp-route-cartId="@item.Id" class="btn btn-danger border-0 fs--1"
+											   style="padding: 6px 8px; background-color: #FA7070">
+												<i class="bi bi-trash-fill"></i>
+											</a>
+										</div>
+									</div>
+								</div>
+							}
+						</div>
+					</div>
+					<div class="card-footer bg-white border-0">
+						<div class="row">
+							<div class="col-md-4 offset-md-1">
+								<ul class="list-group mb-4">
+									<li class="d-flex justify-content-between align-items-center">
+										<h5 class="text-danger fw-semibold text-uppercase">Total (USD)</h5>
+										<h4 class="text-danger fw-bolder">@Model.OrderTotal.ToString("c")</h4>
+									</li>
+								</ul>
+							</div>
+
+							<div class="col-md-6 text-end">
+								<a asp-action="Summary" class="btn border-0 bg-gradient text-white border-0"
+								   style="background-color: #FB88B4; border-radius: 20px">
+									<i class="bi bi-currency-dollar"></i>
+									Checkout
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			}
+	</form>
+</div>
