@@ -2,6 +2,7 @@
 using FoodWagon.Utility;
 using FoodWagon.WebApp.Areas.Account.Models.ViewModels;
 using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -117,6 +118,7 @@ namespace FoodWagon.WebApp.Areas.Account.Controllers {
 			}
 		}
 
+		[Authorize]
 		public IActionResult Logout() {
 			return View();
 		}
