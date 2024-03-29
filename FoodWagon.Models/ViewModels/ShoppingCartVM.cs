@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 namespace FoodWagon.Models.ViewModels {
     public class ShoppingCartVM {
         public IEnumerable<ShoppingCart> ShoppingCarts { get; set; }
-        public double OrderTotal { get; set; }
+        // public double OrderTotal { get; set; }
+        public OrderHeader OrderHeader { get; set; }
     }
 }

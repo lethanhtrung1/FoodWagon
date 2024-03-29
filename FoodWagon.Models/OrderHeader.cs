@@ -8,7 +8,7 @@ namespace FoodWagon.Models {
 		public int Id { get; set; }
 
 		public string ApplicationUserId { get; set; }
-		[ForeignKey("ApplicationUser")]
+		[ForeignKey("ApplicationUserId")]
 		[ValidateNever]
 		public ApplicationUser ApplicationUser { get; set; }
 

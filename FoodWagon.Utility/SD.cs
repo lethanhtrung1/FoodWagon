@@ -12,5 +12,10 @@ namespace FoodWagon.Utility {
         public const string Role_Customer = "Customer";
 
         public static string TokenCookie = "JwtToken";
+
+        // Order Status
+        public static string Order_Pending = "Pending";
+        public static string Order_Approved = "Approved";
+        public static string Order_Cancelled = "Cancelled";
     }
 }

@@ -26,6 +26,7 @@ namespace FoodWagon.WebApp.Areas.Customer.Controllers {
 
 			ShoppingCartVM = new() {
 				ShoppingCarts = _unitOfWork.ShoppingCart.GetAll(x => x.ApplicationUserId == userId, includeProperties: "Product"),
+				OrderHeader = new()
 			};
 
 			IEnumerable<ProductImage> productImages = _unitOfWork.ProductImage.GetAll();
@@ -34,7 +35,7 @@ namespace FoodWagon.WebApp.Areas.Customer.Controllers {
 				cart.Product.ProductImages = productImages.Where(x => x.ProductId == cart.ProductId).ToList();
 				cart.Price = cart.Product.Price - (cart.Product.Price * cart.Product.SaleOff / 100);
 				// ...
-				ShoppingCartVM.OrderTotal += (cart.Product.Price - (cart.Product.Price * cart.Product.SaleOff / 100));
+				ShoppingCartVM.OrderHeader.OrderTotal += (cart.Price * cart.Count);
 			}
 
 			return View(ShoppingCartVM);
@@ -68,7 +69,35 @@ namespace FoodWagon.WebApp.Areas.Customer.Controllers {
 		}
 
 		public IActionResult Summary() {
-			return View();
+			var claimsIdentity = (ClaimsIdentity)User.Identity;
+			var userId = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier).Value;
+
+			ShoppingCartVM shoppingCartVM = new() {
+				ShoppingCarts = _unitOfWork.ShoppingCart.GetAll(x => x.ApplicationUserId == userId, includeProperties: "Product"),
+				OrderHeader = new(),
+			};
+
+			shoppingCartVM.OrderHeader.ApplicationUser = _unitOfWork.ApplicationUser.Get(x => x.Id == userId);
+			shoppingCartVM.OrderHeader.PhoneNumber = shoppingCartVM.OrderHeader.ApplicationUser.PhoneNumber;
+			shoppingCartVM.OrderHeader.Name = shoppingCartVM.OrderHeader.ApplicationUser.Name;
+			shoppingCartVM.OrderHeader.StreetAddress = shoppingCartVM.OrderHeader.ApplicationUser.StreetAddress;
+			shoppingCartVM.OrderHeader.City = shoppingCartVM.OrderHeader.ApplicationUser.City;
+
+			IEnumerable<ProductImage> productImages = _unitOfWork.ProductImage.GetAll();
+
+			foreach(var cart in shoppingCartVM.ShoppingCarts) {
+				cart.Product.ProductImages = productImages.Where(x => x.ProductId == cart.ProductId).ToList();
+				cart.Price = cart.Product.Price - (cart.Product.Price * cart.Product.SaleOff / 100);
+				shoppingCartVM.OrderHeader.OrderTotal += (cart.Price * cart.Count);
+			}
+
+			return View(shoppingCartVM);
+		}
+
+		[HttpPost]
+		[ActionName("Summary")]
+		public IActionResult Summary(ShoppingCartVM shoppingCartVM) {
+			return RedirectToAction("Index", "Home");
 		}
 	}
 }
