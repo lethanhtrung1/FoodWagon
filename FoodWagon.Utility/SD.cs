@@ -11,11 +11,18 @@ namespace FoodWagon.Utility {
         public const string Role_Employee = "Employee";
         public const string Role_Customer = "Customer";
 
+        // ...
         public static string TokenCookie = "JwtToken";
 
         // Order Status
-        public static string Order_Pending = "Pending";
-        public static string Order_Approved = "Approved";
-        public static string Order_Cancelled = "Cancelled";
-    }
+        public const string OrderPending = "Pending";
+        public const string OrderApproved = "Approved";
+        public const string OrderCancelled = "Cancelled";
+		public const string OrderShipped = "Shipped";
+
+        // Payment Status
+        public const string PaymentPending = "Pending";
+        public const string PaymentApproved = "Approved";
+        public const string PaymentRejected = "Rejected";
+	}
 }

@@ -2,7 +2,7 @@ using FoodWagon.DataAccess.Data;
 using FoodWagon.DataAccess.DbInitializer;
 using FoodWagon.DataAccess.Repository;
 using FoodWagon.DataAccess.Repository.IRepository;
-using FoodWagon.Models;
+using FoodWagon.Models.Models;
 using FoodWagon.WebApp.Areas.Account.Services;
 using FoodWagon.WebApp.Areas.Account.Services.IService;
 using Microsoft.AspNetCore.Identity;

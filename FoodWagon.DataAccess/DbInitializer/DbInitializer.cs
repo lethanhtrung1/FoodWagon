@@ -1,5 +1,5 @@
 ﻿using FoodWagon.DataAccess.Data;
-using FoodWagon.Models;
+using FoodWagon.Models.Models;
 using FoodWagon.Utility;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -9,8 +9,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FoodWagon.DataAccess.DbInitializer {
-	public class DbInitializer : IDbInitializer {
+namespace FoodWagon.DataAccess.DbInitializer
+{
+    public class DbInitializer : IDbInitializer {
 		private readonly UserManager<ApplicationUser> _userManager;
 		private readonly RoleManager<IdentityRole> _roleManager;
 		private readonly ApplicationDbContext _dbContext;

@@ -1,13 +1,13 @@
 using FoodWagon.DataAccess.Repository.IRepository;
-using FoodWagon.Models;
-using FoodWagon.WebApp.Models;
+using FoodWagon.Models.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using System.Security.Claims;
 
-namespace FoodWagon.WebApp.Areas.Customer.Controllers {
-	[Area("Customer")]
+namespace FoodWagon.WebApp.Areas.Customer.Controllers
+{
+    [Area("Customer")]
 	public class HomeController : Controller {
 		private readonly ILogger<HomeController> _logger;
 		private readonly IUnitOfWork _unitOfWork;

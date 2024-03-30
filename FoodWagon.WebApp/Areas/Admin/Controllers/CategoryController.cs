@@ -1,9 +1,10 @@
 ﻿using FoodWagon.DataAccess.Repository.IRepository;
-using FoodWagon.Models;
+using FoodWagon.Models.Models;
 using Microsoft.AspNetCore.Mvc;
 
-namespace FoodWagon.WebApp.Areas.Admin.Controllers {
-	[Area("Admin")]
+namespace FoodWagon.WebApp.Areas.Admin.Controllers
+{
+    [Area("Admin")]
 	public class CategoryController : Controller {
 		private readonly IUnitOfWork _unitOfWork;
 

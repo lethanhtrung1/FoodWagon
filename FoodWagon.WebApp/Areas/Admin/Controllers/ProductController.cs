@@ -1,11 +1,12 @@
 ﻿using FoodWagon.DataAccess.Repository.IRepository;
-using FoodWagon.Models;
+using FoodWagon.Models.Models;
 using FoodWagon.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
-namespace FoodWagon.WebApp.Areas.Admin.Controllers {
-	[Area("Admin")]
+namespace FoodWagon.WebApp.Areas.Admin.Controllers
+{
+    [Area("Admin")]
 	public class ProductController : Controller {
 		private readonly IUnitOfWork _unitOfWork;
 		private readonly IWebHostEnvironment _webHostEnvironment;

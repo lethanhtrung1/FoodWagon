@@ -4,16 +4,19 @@
 	<form method="post" class="pt-4 mb-4">
 		<ol class="breadcrumb float-sm-right">
 			<li class="breadcrumb-item">
-				<a asp-area="Customer" asp-controller="Home" asp-action="Index" style="text-decoration:none;color:#000">Home</a>
+				<a asp-area="Customer" asp-controller="Home" asp-action="Index"
+				   style="text-decoration:none;color:#000">Home</a>
 			</li>
 			<li class="breadcrumb-item">
-				<a asp-area="Customer" asp-controller="Cart" asp-action="Index" style="text-decoration:none;color:#000">Cart</a>
+				<a asp-area="Customer" asp-controller="Cart" asp-action="Index"
+				   style="text-decoration:none;color:#000">Cart</a>
 			</li>
 			<li class="breadcrumb-item">Summary</li>
 		</ol>
 
 		<div class="card shadow border-0">
-			<div class="card-header bg-gradient text-light ml-0 py-4" style="background-color: #86B6F6">
+			<div class="card-header bg-gradient text-light ml-0 py-4"
+				 style="background-color: #86B6F6">
 				<div class="row px-4">
 					<div class="col-6">
 						<h5 class="pt-2 text-white">
@@ -101,7 +104,7 @@
 					<div class="col-12 col-md-8 pt-2">
 						<span style="color:#EE4266; font-size:14px;">
 							Estimate Arrival Time:&nbsp;&nbsp;
-							@DateTime.Now.AddMinutes(30).ToString("HH:mm") - 
+							@DateTime.Now.AddMinutes(30).ToString("HH:mm") -
 							@DateTime.Now.AddMinutes(40).ToString("HH:mm")
 						</span>
 					</div>

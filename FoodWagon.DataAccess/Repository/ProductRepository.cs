@@ -1,9 +1,10 @@
 ﻿using FoodWagon.DataAccess.Data;
 using FoodWagon.DataAccess.Repository.IRepository;
-using FoodWagon.Models;
+using FoodWagon.Models.Models;
 
-namespace FoodWagon.DataAccess.Repository {
-	public class ProductRepository : Repository<Product>, IProductRepository {
+namespace FoodWagon.DataAccess.Repository
+{
+    public class ProductRepository : Repository<Product>, IProductRepository {
 		private readonly ApplicationDbContext _dbContext;
 
 		public ProductRepository(ApplicationDbContext dbContext) : base(dbContext) {

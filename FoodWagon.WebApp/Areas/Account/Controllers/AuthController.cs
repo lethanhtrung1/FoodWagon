@@ -1,4 +1,4 @@
-﻿using FoodWagon.Models;
+﻿using FoodWagon.Models.Models;
 using FoodWagon.Utility;
 using FoodWagon.WebApp.Areas.Account.Models.ViewModels;
 using Microsoft.AspNetCore.Authentication;
@@ -9,8 +9,9 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.WebUtilities;
 using System.Text;
 
-namespace FoodWagon.WebApp.Areas.Account.Controllers {
-	[Area("Account")]
+namespace FoodWagon.WebApp.Areas.Account.Controllers
+{
+    [Area("Account")]
 	public class AuthController : Controller {
 		private readonly SignInManager<ApplicationUser> _signInManager;
 		private readonly RoleManager<IdentityRole> _roleManager;

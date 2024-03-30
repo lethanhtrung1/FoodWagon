@@ -1,12 +1,13 @@
-﻿using FoodWagon.Models;
-using FoodWagon.DataAccess.Repository.IRepository;
+﻿using FoodWagon.DataAccess.Repository.IRepository;
 using FoodWagon.WebApp.Areas.Customer.Models.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
+using FoodWagon.Models.Models;
 
-namespace FoodWagon.WebApp.Areas.Customer.Controllers {
+namespace FoodWagon.WebApp.Areas.Customer.Controllers
+{
     [Area("Customer")]
     [Authorize]
     public class ProfileController : Controller {

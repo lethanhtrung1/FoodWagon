@@ -1,8 +1,10 @@
-﻿using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+﻿using FoodWagon.Models.Models;
+using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
-namespace FoodWagon.Models.ViewModels {
-	public class ProductVM {
+namespace FoodWagon.Models.ViewModels
+{
+    public class ProductVM {
 		public Product Product { get; set; }
 		[ValidateNever]
 		public IEnumerable<SelectListItem> CategoryList { get; set; }

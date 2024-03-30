@@ -1,12 +1,13 @@
 ﻿using FoodWagon.DataAccess.Repository.IRepository;
-using FoodWagon.Models;
+using FoodWagon.Models.Models;
 using FoodWagon.Models.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 
-namespace FoodWagon.WebApp.Areas.Customer.Controllers {
-	[Area("Customer")]
+namespace FoodWagon.WebApp.Areas.Customer.Controllers
+{
+    [Area("Customer")]
 	[Authorize]
 	public class CartController : Controller {
 		private readonly IUnitOfWork _unitOfWork;

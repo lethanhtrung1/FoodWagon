@@ -1,12 +1,13 @@
-﻿using FoodWagon.Models;
+﻿using FoodWagon.Models.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FoodWagon.DataAccess.Repository.IRepository {
-	public interface ICategoryRepository : IRepository<Category> {
+namespace FoodWagon.DataAccess.Repository.IRepository
+{
+    public interface ICategoryRepository : IRepository<Category> {
 		void Update(Category category);
 	}
 }

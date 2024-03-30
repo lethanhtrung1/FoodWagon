@@ -1,10 +1,11 @@
-﻿using FoodWagon.Models;
+﻿using FoodWagon.Models.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
-namespace FoodWagon.DataAccess.Data {
-	public class ApplicationDbContext : IdentityDbContext<IdentityUser> {
+namespace FoodWagon.DataAccess.Data
+{
+    public class ApplicationDbContext : IdentityDbContext<IdentityUser> {
 		public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
 
 		#region DbSet

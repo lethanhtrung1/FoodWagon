@@ -1,11 +1,12 @@
 ﻿using FoodWagon.DataAccess.Repository.IRepository;
-using FoodWagon.Models;
+using FoodWagon.Models.Models;
 using FoodWagon.WebApp.Areas.Account.Models.Dto;
 using FoodWagon.WebApp.Areas.Account.Services.IService;
 using Microsoft.AspNetCore.Identity;
 
-namespace FoodWagon.WebApp.Areas.Account.Services {
-	public class AuthService : IAuthService {
+namespace FoodWagon.WebApp.Areas.Account.Services
+{
+    public class AuthService : IAuthService {
 		private readonly IUnitOfWork _unitOfWork;
 		private readonly UserManager<ApplicationUser> _userManager;
 		private readonly RoleManager<IdentityRole> _roleManager;
