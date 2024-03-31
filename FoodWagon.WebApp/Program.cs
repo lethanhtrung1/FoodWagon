@@ -3,10 +3,12 @@ using FoodWagon.DataAccess.DbInitializer;
 using FoodWagon.DataAccess.Repository;
 using FoodWagon.DataAccess.Repository.IRepository;
 using FoodWagon.Models.Models;
+using FoodWagon.Utility.Utility;
 using FoodWagon.WebApp.Areas.Account.Services;
 using FoodWagon.WebApp.Areas.Account.Services.IService;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Stripe;
 using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -17,6 +19,9 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<ApplicationDbContext>(options => {
 	options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
+
+// Configure Stripe
+builder.Services.Configure<StripeSettings>(builder.Configuration.GetSection("Stripe"));
 
 builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
 	.AddEntityFrameworkStores<ApplicationDbContext>().AddSignInManager<SignInManager<ApplicationUser>>()
@@ -48,6 +53,8 @@ if (!app.Environment.IsDevelopment()) {
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
+StripeConfiguration.ApiKey = builder.Configuration.GetSection("Stripe:SecretKey").Get<string>();
+
 app.UseRouting();
 
 app.UseAuthentication();
@@ -62,6 +69,7 @@ app.MapControllerRoute(
 
 app.Run();
 
+// Apply migration
 void SeedDatabase() {
 	using(var scope = app.Services.CreateScope()) {
 		var dbInitializer = scope.ServiceProvider.GetRequiredService<IDbInitializer>();

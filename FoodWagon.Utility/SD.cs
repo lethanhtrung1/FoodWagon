@@ -17,12 +17,15 @@ namespace FoodWagon.Utility {
         // Order Status
         public const string OrderPending = "Pending";
         public const string OrderApproved = "Approved";
+        public const string OrderInProcess = "Processing";
         public const string OrderCancelled = "Cancelled";
 		public const string OrderShipped = "Shipped";
+        public const string OrderRefunded = "Refunded";
 
         // Payment Status
         public const string PaymentPending = "Pending";
         public const string PaymentApproved = "Approved";
         public const string PaymentRejected = "Rejected";
+        public const string PaymentCashOnDelivery = "CashOnDelivery";
 	}
 }

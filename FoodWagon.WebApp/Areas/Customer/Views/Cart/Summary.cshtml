@@ -1,4 +1,4 @@
-﻿@model ShoppingCartVM
+﻿@model CheckoutVM
 
 <div class="container mb-5" style="margin-top: 75px">
 	<form method="post" class="pt-4 mb-4">
@@ -20,7 +20,7 @@
 				<div class="row px-4">
 					<div class="col-6">
 						<h5 class="pt-2 text-white">
-							Order Summary
+							Check out
 						</h5>
 					</div>
 				</div>
@@ -60,6 +60,12 @@
 									<input asp-for="OrderHeader.City" class="form-control" />
 									<label asp-for="OrderHeader.City" class="form-label" style="margin-left: 16px"></label>
 									<span asp-validation-for="OrderHeader.City" class="text-danger"></span>
+								</div>
+							</div>
+							<div class="row my-1 mx-3">
+								<div class="form-check mx-3">
+									<input class="form-check-input" asp-for="@Model.IsPaymentNow" type="checkbox" id="gridCheck">
+									<label class="form-check-label" for="gridCheck"> Payment Now </label>
 								</div>
 							</div>
 						</div>
