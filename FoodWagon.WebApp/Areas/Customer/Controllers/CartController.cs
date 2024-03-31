@@ -115,7 +115,7 @@ namespace FoodWagon.WebApp.Areas.Customer.Controllers {
 			//ApplicationUser applicationUser = _unitOfWork.ApplicationUser.Get(x => x.Id ==  userId);
 
 			foreach (var cart in checkoutVM.ShoppingCarts) {
-				cart.Price = cart.Product.Price - (cart.Product.Price * cart.Product.SaleOff);
+				cart.Price = cart.Product.Price - (cart.Product.Price * cart.Product.SaleOff / 100);
 				checkoutVM.OrderHeader.OrderTotal += (cart.Price * cart.Count);
 			}
 
@@ -185,7 +185,7 @@ namespace FoodWagon.WebApp.Areas.Customer.Controllers {
 		}
 
 		public IActionResult OrderConfirmation(int id) {
-			OrderHeader orderHeader = _unitOfWork.OrderHeader.Get(x => x.Id == id, includeProperties: "ApplicatioUser");
+			OrderHeader orderHeader = _unitOfWork.OrderHeader.Get(x => x.Id == id, includeProperties: "ApplicationUser");
 
 			// Remove item in cart after checkout
 			List<ShoppingCart> shoppingCarts = _unitOfWork.ShoppingCart.GetAll(x => x.ApplicationUserId == orderHeader.ApplicationUserId).ToList();
