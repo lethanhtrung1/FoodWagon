@@ -129,11 +129,11 @@ namespace FoodWagon.WebApp.Areas.Customer.Controllers {
 				checkoutVM.OrderHeader.PaymentStatus = SD.PaymentCashOnDelivery;
 			}
 
-			// Add Order Header
+			// Add Order Header to OrderDetail table
 			_unitOfWork.OrderHeader.Add(checkoutVM.OrderHeader);
 			_unitOfWork.Save();
 
-			// Add Order Details
+			// Add Order Details to OrderDetail table
 			foreach (var cart in checkoutVM.ShoppingCarts) {
 				OrderDetail orderDetail = new() {
 					ProductId = cart.ProductId,

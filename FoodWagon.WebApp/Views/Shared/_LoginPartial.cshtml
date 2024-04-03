@@ -5,12 +5,19 @@
 
 @if (SignInManager.IsSignedIn(User)) {
 	<li class="nav-item dropdown">
-		<a class="nav-link text-dark dropdown-toggle" href="#" id="navbarDropdown"
-		   role="button" data-bs-toggle="dropdown" aria-expanded="false">
-			<i class="bi bi-bell mr-2"></i>
-			Hello @UserManager.GetUserName(User)!
+		<a class="nav-link text-dark dropdown-toggle mr-3" href="#" id="navbarDropdown"
+		   role="button" data-bs-toggle="dropdown" aria-expanded="false" style="padding: 0">
+			<img src="~/images/avatar/avatar-2.png" alt="..." class="avatar-img rounded-circle" style="width: 35px">
+			@* @UserManager.GetUserName(User) *@
+			<i class="bi bi-chevron-down" style="font-size: 10px"></i>
 		</a>
 		<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+			<li class="px-4">
+				<span class="text-danger">
+					@UserManager.GetUserName(User)
+				</span>
+			</li>
+			<li><hr class="dropdown-divider"></li>
 			<li>
 				<a class="dropdown-item" asp-area="Customer" asp-controller="Profile" asp-action="Index" title="Manage">
 					<i class="bi bi-person me-2"></i>&nbsp;Account

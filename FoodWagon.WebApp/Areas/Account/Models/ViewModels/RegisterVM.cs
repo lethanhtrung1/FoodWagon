@@ -20,6 +20,7 @@ namespace FoodWagon.WebApp.Areas.Account.Models.ViewModels {
 
 		[Required]
 		[Display(Name = "Confirm password")]
+		[DataType(DataType.Password)]
 		[Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
 		public string ConfirmPassword { get; set; }
 
