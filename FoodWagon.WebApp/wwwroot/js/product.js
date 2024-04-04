@@ -6,10 +6,18 @@ $(document).ready(function () {
 
 function loadDataTable() {
     dataTable = $('#dataTable').DataTable({
-        "ajax": { url: '/Admin/Product/GetAll' },
-        "columns": [
+        processing: true,
+        serverSide: true,
+        filter: true,
+        ajax: {
+            type: "POST",
+            url: "/Admin/Product/GetAll",
+            dataType: "json"
+        },
+        columns: [
             {
                 data: "productImages",
+                name: "productImages",
                 "render": function (data) {
                     return `
                         <img src="${data[0].imageUrl}" style="width: 50px" />
@@ -17,13 +25,13 @@ function loadDataTable() {
                 },
                 "width": "15%"
             },
-            { data: 'title', "width": "20%" },
-            { data: 'price', "width": "10%" },
-            { data: 'saleOff', "width": "15%" },
-            { data: 'category.name', "width": "10%" },
+            { data: 'title', name: "title", "width": "20%" },
+            { data: 'price', name: "price", "width": "10%" },
+            { data: 'saleOff', name: "saleOff", "width": "15%" },
+            { data: 'category.name', name: "category", "width": "10%" },
             {
                 data: 'id',
-                "render": function (data) {
+                render: function (data) {
                     return `
                         <div class="w-75 btn-group text-end" role="group">
                             <a href="/Admin/Product/Edit?productId=${data}" 
@@ -40,6 +48,12 @@ function loadDataTable() {
                 "width": "30%"
             },
         ],
+        columnsDefs: [
+            {
+                targets: [0],
+                searchable: false
+            }
+        ]
     });
 }
 

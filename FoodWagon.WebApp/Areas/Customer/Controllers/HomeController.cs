@@ -73,5 +73,9 @@ namespace FoodWagon.WebApp.Areas.Customer.Controllers {
 		public IActionResult Blog() {
 			return View();
 		}
+
+		public IActionResult Contact() {
+			return View();
+		}
 	}
 }

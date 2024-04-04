@@ -1,19 +1,22 @@
-﻿using FoodWagon.DataAccess.Repository.IRepository;
+﻿using FoodWagon.DataAccess.Data;
+using FoodWagon.DataAccess.Repository.IRepository;
 using FoodWagon.Models.Models;
 using FoodWagon.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 
-namespace FoodWagon.WebApp.Areas.Admin.Controllers
-{
-    [Area("Admin")]
+namespace FoodWagon.WebApp.Areas.Admin.Controllers {
+	[Area("Admin")]
 	public class ProductController : Controller {
 		private readonly IUnitOfWork _unitOfWork;
 		private readonly IWebHostEnvironment _webHostEnvironment;
+		private readonly ApplicationDbContext _dbContext;
 
-		public ProductController(IUnitOfWork unitOfWork, IWebHostEnvironment webHostEnvironment) {
+		public ProductController(IUnitOfWork unitOfWork, IWebHostEnvironment webHostEnvironment, ApplicationDbContext dbContext) {
 			_unitOfWork = unitOfWork;
 			_webHostEnvironment = webHostEnvironment;
+			_dbContext = dbContext;
 		}
 
 		public IActionResult Index() {
@@ -98,15 +101,49 @@ namespace FoodWagon.WebApp.Areas.Admin.Controllers
 
 		#region APIs call
 
-		[HttpGet]
+		[HttpPost]
 		public IActionResult GetAll() {
 			try {
-				IEnumerable<Product> products = _unitOfWork.Product.GetAll(includeProperties: "Category,ProductImages");
-				//foreach (var product in products) {
-				//	product.ProductImages = _unitOfWork.ProductImage.GetAll(x => x.ProductId == product.Id).ToList();
-				//}
-				return Json(new { data = products });
+				// var req = Request.Form;
+
+				var currentPage = Request.Form["draw"].FirstOrDefault();
+				var start = Request.Form["start"].FirstOrDefault();
+				var length = Request.Form["length"].FirstOrDefault();
+
+				var sortColumn = Request.Form["columns[" + Request.Form["order[0][column]"].FirstOrDefault() + "][name]"].FirstOrDefault();
+				var sortColumnDir = Request.Form["order[0][dir]"].FirstOrDefault();
+				var searchValue = Request.Form["search[value]"].FirstOrDefault();
+
+				int pageSize = length != null ? Convert.ToInt32(length) : 0;
+				int skip = start != null ? Convert.ToInt32(start) : 0;
+
+				var listData = _dbContext.Products.Include(x => x.Category).Include(y => y.ProductImages).ToList();
+
+				//var data = (from product in _dbContext.Products
+				//			join category in _dbContext.Categories on product.CategoryId equals category.Id
+				//			join productImages in _dbContext.ProductImages on product.Id equals productImages.ProductId
+				//			group product by product.Id);
+
+				if (!string.IsNullOrEmpty(sortColumn) && !string.IsNullOrEmpty(sortColumnDir)) {
+					//data = data.OrderBy(sortColumn + " " + sortColumnDir);
+				}
+
+				if (!string.IsNullOrEmpty(searchValue)) {
+					listData = listData.Where(x => x.Title.Contains(searchValue) || x.Category.Name == searchValue).ToList();
+				}
+
+				int totalRecord = _dbContext.Products.Count();
+				listData = listData.Skip(skip).Take(pageSize).ToList();
+
+				var jsonResult = new {
+					draw = currentPage,
+					recordsFiltered = totalRecord,
+					recordsTotle = totalRecord,
+					data = listData
+				};
+				return new JsonResult(jsonResult);
 			} catch (Exception) {
+
 				throw;
 			}
 		}

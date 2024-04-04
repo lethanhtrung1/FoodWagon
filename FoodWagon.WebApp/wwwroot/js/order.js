@@ -17,6 +17,7 @@ $(document).ready(function () {
 
 function loadDataTable(status) {
     dataTable = $("#dataTable").DataTable({
+        //"serverSide": true,
         "ajax": { url: "/admin/order/getall?status=" + status },
         "columns": [
             { data: "name", "width": "15%" },

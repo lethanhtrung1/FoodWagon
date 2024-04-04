@@ -18,7 +18,7 @@
 					<div class="card card-span h-100 text-white rounded-3 shadow">
 						@if (item.ProductImages != null && item.ProductImages.Count() > 0) {
 							<img src="@item.ProductImages.FirstOrDefault().ImageUrl"
-								 class="img-fluid rounded-3 h-100" />
+								 class="img-fluid rounded-3" style="height: 224px; object-fit: cover" />
 						} else {
 							<img src="https://placehold.co/500x600/png" class="img-fluid rounded-3 h-100" />
 						}

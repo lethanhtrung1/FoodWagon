@@ -43,7 +43,7 @@ namespace FoodWagon.WebApp.Areas.Admin.Controllers {
 
 			if (User.IsInRole(SD.Role_Admin) || User.IsInRole(SD.Role_Employee)) {
 				orderHeaders = _unitOfWork.OrderHeader.GetAll(includeProperties: "ApplicationUser").ToList();
-				foreach(var order in orderHeaders) {
+				foreach (var order in orderHeaders) {
 					string dateTime = order.OrderDate.ToString("yyyy-MM-dd HH:mm:ss");
 					order.OrderDate = DateTime.ParseExact(dateTime, "yyyy-MM-dd HH:mm:ss", CultureInfo.InvariantCulture);
 				}
