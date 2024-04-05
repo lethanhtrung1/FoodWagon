@@ -17,9 +17,15 @@ $(document).ready(function () {
 
 function loadDataTable(status) {
     dataTable = $("#dataTable").DataTable({
-        //"serverSide": true,
-        "ajax": { url: "/admin/order/getall?status=" + status },
-        "columns": [
+        processing: true,
+        serverSide: true,
+        filter: true,
+        ajax: {
+            type: "POST",
+            url: "/admin/order/getall?status=" + status,
+            dataType: "json"
+        },
+        columns: [
             { data: "name", "width": "15%" },
             { data: "phoneNumber", "width": "15%" },
             { data: "orderStatus", "width": "10%" },
@@ -32,7 +38,8 @@ function loadDataTable(status) {
                 "render": function (data) {
                     return `
                         <div class="w-75 btn-group" role="group">
-                            <a href="/admin/order/details?orderId=${data}" class="btn btn-outline-primary mx-1" 
+                            <a href="/admin/order/details?orderId=${data}" 
+                              class="btn btn-outline-primary mx-1" 
                               style="border-radius: 20px">
                                 <i class="bi bi-pencil-square"></i>
                             </a>

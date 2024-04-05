@@ -101,6 +101,19 @@ namespace FoodWagon.WebApp.Areas.Admin.Controllers {
 
 		#region APIs call
 
+		//[HttpGet]
+		//public IActionResult GetAll() {
+		//	try {
+		//		IEnumerable<Product> products = _unitOfWork.Product.GetAll(includeProperties: "Category,ProductImages");
+		//		//foreach (var product in products) {
+		//		//	product.ProductImages = _unitOfWork.ProductImage.GetAll(x => x.ProductId == product.Id).ToList();
+		//		//}
+		//		return Json(new { data = products });
+		//	} catch (Exception) {
+		//		throw;
+		//	}
+		//}
+
 		[HttpPost]
 		public IActionResult GetAll() {
 			try {
@@ -126,6 +139,11 @@ namespace FoodWagon.WebApp.Areas.Admin.Controllers {
 
 				if (!string.IsNullOrEmpty(sortColumn) && !string.IsNullOrEmpty(sortColumnDir)) {
 					//data = data.OrderBy(sortColumn + " " + sortColumnDir);
+					if(sortColumnDir == "asc") {
+						listData = listData.OrderBy(x => x.Title).ToList();
+					} else if(sortColumnDir == "desc") {
+						listData = listData.OrderByDescending(x => x.Title).ToList();
+					}
 				}
 
 				if (!string.IsNullOrEmpty(searchValue)) {
