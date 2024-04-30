@@ -119,7 +119,7 @@ namespace FoodWagon.WebApp.Areas.Customer.Controllers {
 				checkoutVM.OrderHeader.OrderTotal += (cart.Price * cart.Count);
 			}
 
-			if(checkoutVM.IsPaymentNow) {
+			if (checkoutVM.IsPaymentNow) {
 				// Stripe Payment 
 				checkoutVM.OrderHeader.OrderStatus = SD.OrderPending;
 				checkoutVM.OrderHeader.PaymentStatus = SD.PaymentPending;
@@ -193,12 +193,12 @@ namespace FoodWagon.WebApp.Areas.Customer.Controllers {
 			_unitOfWork.Save();
 
 			// if order is not Cash on delivery
-			if(orderHeader.OrderStatus != SD.PaymentCashOnDelivery) {
+			if (orderHeader.OrderStatus != SD.PaymentCashOnDelivery) {
 				var service = new SessionService();
 				Session session = service.Get(orderHeader.SessionId);
 
 				// payment is successful
-				if(session.PaymentStatus.ToLower() == "paid") {
+				if (session.PaymentStatus.ToLower() == "paid") {
 					_unitOfWork.OrderHeader.UpdateStripePaymentId(id, session.Id, session.PaymentIntentId);
 					_unitOfWork.OrderHeader.UpdateStatus(id, SD.OrderApproved, SD.PaymentApproved);
 					_unitOfWork.Save();

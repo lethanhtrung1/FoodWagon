@@ -6,16 +6,16 @@
 		<div class="card-header ml-0 py-4">
 			<div class="row pr-2">
 				<div class="col-6 d-none d-md-block col-md-6 pb-1">
-					<h3 style="color: #74E291">
+					<h3 style="color: #FF6868">
 						<i class="bi bi-cart-fill"></i> &nbsp; Order Detail
 					</h3>
 				</div>
 				<div class="col-6 col-md-4 offset-md-2 text-end">
-					<a asp-action="Index" class="btn text-white btn-sm mt-2"
-					   style="background-color: #836FFF">
-						<i class="bi bi-arrow-left me-2"></i>
-						Back to Orders
-					</a>
+					@* <a asp-action="Index" class="btn text-white btn-sm mt-2"
+					style="background-color: #836FFF">
+					<i class="bi bi-arrow-left me-2"></i>
+					Back to Orders
+					</a> *@
 				</div>
 			</div>
 		</div>
@@ -187,7 +187,8 @@
 
 						@if (User.IsInRole(SD.Role_Admin) || User.IsInRole(SD.Role_Employee)) {
 							<button type="submit" asp-action="UpdateOrderDetail"
-									class="btn bg-primary text-white form-control my-1 mt-3">
+									class="btn bg-primary text-white form-control my-1 mt-3"
+									style="border-radius: 20px">
 								Update Order Detail
 							</button>
 						}
@@ -198,7 +199,8 @@
 						<h4 class="d-flex justify-content-between align-items-center mb-3">
 							<span style="color: #FF6868">Order Summary</span>
 						</h4>
-						<label class="btn bg-success text-white form-control my-2">
+						<label class="btn bg-success text-white form-control mt-2"
+							   style="margin-bottom: -2px">
 							Order Status - @Model.OrderHeader.OrderStatus
 						</label>
 
@@ -212,7 +214,7 @@
 											<small class="text-muted">Quantity : @detail.Count</small>
 										</div>
 										<div class="col-4 text-end">
-											<p class="text-success">
+											<p class="text-black">
 												@((detail.Count * detail.Price).ToString("c"))
 											</p>
 										</div>
@@ -223,10 +225,10 @@
 							<li class="list-group-item bg-gradient">
 								<div class="row container">
 									<div class="col-6">
-										<h5 class="text-back">TOTAL: </h5>
+										<h5 style="color: #FF6868">TOTAL: </h5>
 									</div>
 									<div class="col-6 text-end">
-										<h5 class="text-dark">
+										<h5 style="color: #FF6868">
 											@Model.OrderHeader.OrderTotal.ToString("c")
 										</h5>
 									</div>
@@ -242,7 +244,8 @@
 								@if (Model.OrderHeader.OrderStatus == SD.OrderApproved) {
 									<div class="col-6">
 										<button type="submit" asp-action="StartProcessing"
-												class="btn bg-primary text-white form-control my-1">
+												class="btn bg-primary text-white form-control my-1"
+												style="border-radius: 20px">
 											Processing
 										</button>
 									</div>
@@ -250,7 +253,8 @@
 								@if (Model.OrderHeader.OrderStatus == SD.OrderInProcess) {
 									<div class="col-6">
 										<button type="submit" onclick="validateInput()" asp-action="ShipOrder"
-												class="btn bg-success text-white form-control my-1">
+												class="btn bg-success text-white form-control my-1"
+												style="border-radius: 20px">
 											Ship Order
 										</button>
 									</div>
@@ -260,7 +264,8 @@
 													Model.OrderHeader.OrderStatus != SD.OrderShipped) {
 									<div class="col-6">
 										<button type="submit" asp-action="CancelOrder"
-												class="btn bg-danger form-control my-1 text-white">
+												class="btn bg-danger form-control my-1 text-white"
+												style="border-radius: 20px">
 											Cancel Order
 										</button>
 									</div>

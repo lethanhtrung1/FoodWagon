@@ -6,8 +6,8 @@ using FoodWagon.Utility;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Stripe;
 using System.Globalization;
-using System.Security.Claims;
 
 namespace FoodWagon.WebApp.Areas.Admin.Controllers {
 	[Area("Admin")]
@@ -33,43 +33,89 @@ namespace FoodWagon.WebApp.Areas.Admin.Controllers {
 			return View(orderVM);
 		}
 
+		// Update Order Detail
+		[HttpPost]
+		[Authorize(Roles = SD.Role_Admin + "," + SD.Role_Employee)]
+		public IActionResult UpdateOrderDetail(OrderVM orderVM) {
+			var orderHeaderFromDb = _unitOfWork.OrderHeader.Get(x => x.Id == orderVM.OrderHeader.Id);
+
+			orderHeaderFromDb.Name = orderVM.OrderHeader.Name;
+			orderHeaderFromDb.PhoneNumber = orderVM.OrderHeader.PhoneNumber;
+			orderHeaderFromDb.StreetAddress = orderVM.OrderHeader.StreetAddress;
+			orderHeaderFromDb.City = orderVM.OrderHeader.City;
+			if (!string.IsNullOrEmpty(orderVM.OrderHeader.Carrier)) {
+				orderHeaderFromDb.Carrier = orderVM.OrderHeader.Carrier;
+			}
+			if (!string.IsNullOrEmpty(orderVM.OrderHeader.TrackingNumber)) {
+				orderHeaderFromDb.TrackingNumber = orderVM.OrderHeader.TrackingNumber;
+			}
+			_unitOfWork.OrderHeader.Update(orderHeaderFromDb);
+			_unitOfWork.Save();
+			TempData["success"] = "Order Detail updated successful.";
+
+			return RedirectToAction(nameof(Details), new {
+				orderId = orderHeaderFromDb.Id,
+			});
+		}
+
+		[HttpPost]
+		[Authorize(Roles = SD.Role_Admin + "," + SD.Role_Employee)]
+		public IActionResult StartProcessing(OrderVM orderVM) {
+			_unitOfWork.OrderHeader.UpdateStatus(orderVM.OrderHeader.Id, SD.OrderInProcess);
+			_unitOfWork.Save();
+			TempData["success"] = "Order Detail updated successful.";
+
+			return RedirectToAction(nameof(Details), new {
+				orderId = orderVM.OrderHeader.Id
+			});
+		}
+
+		[HttpPost]
+		[Authorize(Roles = SD.Role_Admin + "," + SD.Role_Employee)]
+		public IActionResult ShipOrder(OrderVM orderVM) {
+			OrderHeader orderHeader = _unitOfWork.OrderHeader.Get(x => x.Id == orderVM.OrderHeader.Id);
+
+			orderHeader.Carrier = orderVM.OrderHeader.Carrier;
+			orderHeader.TrackingNumber = orderVM.OrderHeader.TrackingNumber;
+			orderHeader.OrderStatus = SD.OrderShipped;
+			orderHeader.ShippingDate = DateTime.Now;
+
+			_unitOfWork.OrderHeader.Update(orderHeader);
+			_unitOfWork.Save();
+			TempData["success"] = "Order shipped successfully";
+
+			return RedirectToAction(nameof(Details), new {
+				orderId = orderVM.OrderHeader.Id
+			});
+		}
+
+		[HttpPost]
+		[Authorize(Roles = SD.Role_Admin + "," + SD.Role_Employee)]
+		public IActionResult CancelOrder(OrderVM orderVM) {
+			OrderHeader orderHeader = _unitOfWork.OrderHeader.Get(x => x.Id == orderVM.OrderHeader.Id);
+
+			if (orderHeader.PaymentStatus == SD.PaymentApproved) {
+				var options = new RefundCreateOptions {
+					Reason = RefundReasons.RequestedByCustomer,
+					PaymentIntent = orderHeader.PaymentIntentId
+				};
+				var service = new RefundService();
+				Refund refund = service.Create(options);
+
+				_unitOfWork.OrderHeader.UpdateStatus(orderHeader.Id, SD.OrderCancelled, SD.OrderRefunded);
+			} else {
+				_unitOfWork.OrderHeader.UpdateStatus(orderHeader.Id, SD.OrderCancelled, SD.OrderCancelled);
+			}
+			_unitOfWork.Save();
+			TempData["success"] = "Order Cancelled successfully";
+
+			return RedirectToAction(nameof(Details), new {
+				orderId = orderHeader.Id
+			});
+		}
+
 
 		#region APIs
-
-		//[HttpGet]
-		//public IActionResult GetAll(string status) {
-		//	List<OrderHeader> orderHeaders;
-
-		//	if (User.IsInRole(SD.Role_Admin) || User.IsInRole(SD.Role_Employee)) {
-		//		orderHeaders = _unitOfWork.OrderHeader.GetAll(includeProperties: "ApplicationUser").ToList();
-		//		foreach (var order in orderHeaders) {
-		//			string dateTime = order.OrderDate.ToString("yyyy-MM-dd HH:mm:ss");
-		//			order.OrderDate = DateTime.ParseExact(dateTime, "yyyy-MM-dd HH:mm:ss", CultureInfo.InvariantCulture);
-		//		}
-		//	} else {
-		//		var claimsIdentity = (ClaimsIdentity)User.Identity;
-		//		var userId = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier).Value;
-		//		orderHeaders = _unitOfWork.OrderHeader.GetAll(x => x.ApplicationUserId == userId, includeProperties: "ApplicationUser").ToList();
-		//	}
-
-		//	switch (status) {
-		//		case "pending":
-		//			orderHeaders = orderHeaders.Where(x => x.OrderStatus == SD.OrderPending).ToList();
-		//			break;
-		//		case "inprocess":
-		//			orderHeaders = orderHeaders.Where(x => x.OrderStatus == SD.OrderInProcess).ToList();
-		//			break;
-		//		case "approved":
-		//			orderHeaders = orderHeaders.Where(x => x.OrderStatus == SD.OrderApproved).ToList();
-		//			break;
-		//		case "completed":
-		//			orderHeaders = orderHeaders.Where(x => x.OrderStatus == SD.OrderShipped).ToList();
-		//			break;
-		//		default:
-		//			break;
-		//	}
-		//	return Json(new { data = orderHeaders });
-		//}
 
 		/// <summary>
 		///  Get Orders

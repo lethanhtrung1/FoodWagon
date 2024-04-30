@@ -33,7 +33,6 @@
     <None Include="wwwroot\lib\css\simplebar.css" />
     <None Include="wwwroot\lib\js\apps.js" />
     <None Include="wwwroot\lib\js\config.js" />
-    <None Include="wwwroot\lib\js\quill.min.js" />
     <None Include="wwwroot\lib\js\simplebar.min.js" />
   </ItemGroup>
 
