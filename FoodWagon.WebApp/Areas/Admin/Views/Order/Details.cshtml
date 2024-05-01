@@ -236,12 +236,18 @@
 							</li>
 						</ul>
 
-						@* @if (Model.OrderHeader.PaymentStatus == SD.PaymentStatusDelayedPayment && Model.OrderHeader.OrderStatus == SD.StatusShipped) {
-						<button type="submit" class="btn btn-success form-control my-1">Pay Now</button>
-						} *@
 						@if (User.IsInRole(SD.Role_Admin) || User.IsInRole(SD.Role_Employee)) {
 							<div class="row">
-								@if (Model.OrderHeader.OrderStatus == SD.OrderApproved) {
+								@if (Model.OrderHeader.PaymentMethod == SD.PaymentCashOnDelivery && Model.OrderHeader.OrderStatus == SD.OrderPending) {
+									<div class="col-6">
+										<button type="submit" asp-action="StartProcessing"
+												class="btn bg-primary text-white form-control my-1"
+												style="border-radius: 20px">
+											Approve Order
+										</button>
+									</div>
+								}
+								@* @if (Model.OrderHeader.OrderStatus == SD.OrderApproved) {
 									<div class="col-6">
 										<button type="submit" asp-action="StartProcessing"
 												class="btn bg-primary text-white form-control my-1"
@@ -249,7 +255,7 @@
 											Processing
 										</button>
 									</div>
-								}
+								} *@
 								@if (Model.OrderHeader.OrderStatus == SD.OrderInProcess) {
 									<div class="col-6">
 										<button type="submit" onclick="validateInput()" asp-action="ShipOrder"

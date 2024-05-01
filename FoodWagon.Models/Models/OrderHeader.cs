@@ -34,5 +34,7 @@ namespace FoodWagon.Models.Models {
 		public string StreetAddress { get; set; }
 		[Required]
 		public string City { get; set; }
+		[Required]
+		public string PaymentMethod { get; set; }
 	}
 }

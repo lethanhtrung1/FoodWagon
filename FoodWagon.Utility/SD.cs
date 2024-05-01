@@ -26,6 +26,8 @@ namespace FoodWagon.Utility {
         public const string PaymentPending = "Pending";
         public const string PaymentApproved = "Approved";
         public const string PaymentRejected = "Rejected";
-        public const string PaymentCashOnDelivery = "CashOnDelivery";
+
+        public const string PaymentCashOnDelivery = "Cash on Delivery";
+        public const string PaymentCreditCard = "Credit Card";
 	}
 }
