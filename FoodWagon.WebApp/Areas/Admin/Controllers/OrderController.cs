@@ -173,7 +173,8 @@ namespace FoodWagon.WebApp.Areas.Admin.Controllers {
 				}
 				foreach (var order in listData) {
 					string dateTime = order.OrderDate.ToString("yyyy-MM-dd HH:mm:ss");
-					order.OrderDate = DateTime.ParseExact(dateTime, "yyyy-MM-dd HH:mm:ss", CultureInfo.InvariantCulture);
+					order.OrderDate = DateTime.Parse(dateTime);
+					//order.OrderDate = DateTime.ParseExact(dateTime, "yyyy-MM-dd HH:mm:ss", CultureInfo.InvariantCulture);
 				}
 
 				var jsonResult = new {

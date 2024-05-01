@@ -27,11 +27,12 @@ function loadDataTable(status) {
         },
         columns: [
             { data: "name", "width": "15%" },
-            { data: "phoneNumber", "width": "15%" },
+            { data: "phoneNumber", "width": "10%" },
             { data: "orderStatus", "width": "10%" },
             { data: "orderTotal", "width": "10%" },
-            { data: "streetAddress", "width": "20%" },
+            { data: "streetAddress", "width": "15%" },
             { data: "city", "width": "10%" },
+            { data: "paymentMethod", "width": "10%" },
             { data: "orderDate", "width": "15%" },
             {
                 data: "id",

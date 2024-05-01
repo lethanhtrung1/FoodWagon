@@ -256,7 +256,7 @@
 										</button>
 									</div>
 								} *@
-								@if (Model.OrderHeader.OrderStatus == SD.OrderInProcess) {
+								@if (Model.OrderHeader.OrderStatus == SD.OrderInProcess || Model.OrderHeader.OrderStatus == SD.OrderApproved) {
 									<div class="col-6">
 										<button type="submit" onclick="validateInput()" asp-action="ShipOrder"
 												class="btn bg-success text-white form-control my-1"

@@ -21,6 +21,7 @@ namespace FoodWagon.Utility {
         public const string OrderCancelled = "Cancelled";
 		public const string OrderShipped = "Shipped";
         public const string OrderRefunded = "Refunded";
+        public const string OrderCompleted = "Completed";
 
         // Payment Status
         public const string PaymentPending = "Pending";

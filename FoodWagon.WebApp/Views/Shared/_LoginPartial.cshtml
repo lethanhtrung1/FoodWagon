@@ -20,10 +20,12 @@
 			<li><hr class="dropdown-divider"></li>
 			<li>
 				<a class="dropdown-item" asp-area="Customer" asp-controller="Profile" asp-action="Index" title="Manage">
-					<i class="bi bi-person me-2"></i>&nbsp;Account
+					<i class="bi bi-person me-2"></i>&nbsp;My Account
 				</a>
 			</li>
-			<li><a class="dropdown-item" href="#"><i class="bi bi-bag me-2"></i>&nbsp;Purchase</a></li>
+			<li><a class="dropdown-item" asp-area="Customer" asp-controller="Order" asp-action="Index">
+				<i class="bi bi-bag me-2"></i>&nbsp;My Orders</a>
+			</li>
 			<li><a class="dropdown-item" href="#"><i class="bi bi-gear me-2"></i>&nbsp;Setting</a></li>
 
 			<li><hr class="dropdown-divider"></li>

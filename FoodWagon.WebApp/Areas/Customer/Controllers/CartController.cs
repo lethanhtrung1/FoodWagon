@@ -1,4 +1,5 @@
-﻿using FoodWagon.DataAccess.Repository.IRepository;
+﻿using FoodWagon.DataAccess.Repository;
+using FoodWagon.DataAccess.Repository.IRepository;
 using FoodWagon.Models.Models;
 using FoodWagon.Models.ViewModels;
 using FoodWagon.Utility;
@@ -207,7 +208,12 @@ namespace FoodWagon.WebApp.Areas.Customer.Controllers {
 				}
 			}
 
-			return View(id);
+			OrderVM orderVm = new() {
+				OrderHeader = orderHeader,
+				OrderDetail = _unitOfWork.OrderDetail.GetAll(x => x.OrderHeaderId == id, includeProperties: "Product")
+			};
+
+			return View(orderVm);
 		}
 	}
 }
