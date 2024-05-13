@@ -21,6 +21,7 @@
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.2" />
     <PackageReference Include="Stripe.net" Version="43.21.0" />
+    <PackageReference Include="Syncfusion.EJ2.AspNet.Core" Version="25.2.3" />
   </ItemGroup>
 
   <ItemGroup>

@@ -1,1 +1,103 @@
-﻿<h2 class="h5 page-title">Wellcome!</h2>
+﻿
+<div class="container-fluid">
+	<h2 class="h5 page-title">Wellcome!</h2>
+	<div class="row">
+		<div class="col-md-4 my-4">
+			<div class="card shadow">
+				<div class="card-body">
+					<div class="row align-items-center">
+						<div class="col">
+							<strong class="card-title">Sales</strong>
+							<span class="text-muted">| Today</span>
+							<p class="small mb-0">
+								@* <span class="fe fe-12 fe-arrow-up text-success"></span> *@
+								<span class="text-success fw-bold" style="font-size: 18px">@ViewBag.TotalOrderToday</span>
+							</p>
+						</div>
+						<div class="col-4 text-right">
+							<i class="bi bi-cart-fill text-success" style="font-size: 24px"></i>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-4 my-4">
+			<div class="card shadow">
+				<div class="card-body">
+					<div class="row align-items-center">
+						<div class="col">
+							<strong class="card-title">Revenue</strong>
+							<span class="text-muted">| This Month</span>
+							<p class="small mb-0">
+								@* <span class="fe fe-12 fe-arrow-down text-danger"></span> *@
+								<span class="text-primary fw-bold" style="font-size: 18px">@ViewBag.TotalRevenueOrder</span>
+							</p>
+						</div>
+						<div class="col-4 text-right">
+							<i class="bi bi-currency-dollar text-primary" style="font-size: 24px"></i>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-4 my-4">
+			<div class="card shadow">
+				<div class="card-body">
+					<div class="row align-items-center">
+						<div class="col">
+							<strong class="card-title">Users</strong>
+							<span class="text-muted">| This Year</span>
+							<p class="small mb-0">
+								@* <span class="fe fe-12 fe-arrow-up text-success"></span> *@
+								<span class="text-danger fw-bold" style="font-size: 18px">@ViewBag.TotalUsers</span>
+							</p>
+						</div>
+						<div class="col-4 text-right">
+							<i class="bi bi-people-fill text-danger" style="font-size: 24px"></i>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="row justify-content-center">
+		<div class="col-12">
+			<div class="row">
+				<div class="col-md-4 mb-4">
+					<div class="card shadow">
+						<div class="card-header">
+							<strong class="card-title mb-0">Pie Chart</strong>
+						</div>
+						<div class="card-body">
+							@* <canvas id="lineChartjs" width="400" height="300"></canvas> *@
+							<ejs-accumulationchart id="doughnutchart" enableSmartLabels background="#fff">
+								<e-accumulation-series-collection>
+									<e-accumulation-series dataSource="@ViewBag.DoughnutChart"
+														   xName="product" yName="total"
+														   innerRadius="60" legendShape="Circle">
+										<e-accumulationseries-datalabel name="formattedTotal" visible="false"></e-accumulationseries-datalabel>
+									</e-accumulation-series>
+								</e-accumulation-series-collection>
+								<e-accumulationchart-legendsettings position="Top" toggleVisibility="true">
+									<e-legendsettings-textstyle size="1rem"></e-legendsettings-textstyle>
+								</e-accumulationchart-legendsettings>
+								<e-accumulationchart-tooltipsettings enable></e-accumulationchart-tooltipsettings>
+							</ejs-accumulationchart>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-8 mb-4">
+					<div class="card shadow">
+						<div class="card-header">
+							<strong class="card-title mb-0">Line Chart</strong>
+						</div>
+						<div class="card-body">
+							<canvas id="pieChartjs" width="400" height="300"></canvas>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

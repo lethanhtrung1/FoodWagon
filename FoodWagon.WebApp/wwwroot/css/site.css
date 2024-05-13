@@ -118,3 +118,9 @@ table.dataTable td.dt-type-numeric,
 table.dataTable td.dt-type-date {
     text-align: left;
 }
+
+.vertical .wrapper,
+.vertical .wrapper .topnav,
+.vertical .wrapper #leftSidebar {
+    z-index: 9999999999 !important;
+}

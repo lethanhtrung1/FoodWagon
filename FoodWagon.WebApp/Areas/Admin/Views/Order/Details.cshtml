@@ -115,7 +115,7 @@
 							<span asp-validation-for="OrderHeader.Carrier" class="text-danger" style="font-size:14px"></span>
 						</div>
 
-						<div class="row">
+						@* <div class="row">
 							<div class="form-group col-12">
 								<label style="font-size:14px">Tracking</label>
 								@if (User.IsInRole(SD.Role_Admin) || User.IsInRole(SD.Role_Employee)) {
@@ -126,7 +126,7 @@
 								}
 							</div>
 							<span asp-validation-for="OrderHeader.TrackingNumber" class="text-danger" style="font-size:14px"></span>
-						</div>
+						</div> *@
 
 						<div class="row">
 							<div class="form-group col-12">
@@ -267,7 +267,8 @@
 								}
 								@if (Model.OrderHeader.OrderStatus != SD.OrderRefunded &&
 													Model.OrderHeader.OrderStatus != SD.OrderCancelled &&
-													Model.OrderHeader.OrderStatus != SD.OrderShipped) {
+													Model.OrderHeader.OrderStatus != SD.OrderShipped &&
+													Model.OrderHeader.OrderStatus != SD.OrderCompleted) {
 									<div class="col-6">
 										<button type="submit" asp-action="CancelOrder"
 												class="btn bg-danger form-control my-1 text-white"
@@ -289,14 +290,14 @@
 	<partial name="_ValidationScriptsPartial" />
 	<script>
 		function validateInput() {
-			if (document.getElementById("trackingNumber").value == "") {
-				Swal.fire({
-					icon: "error",
-					title: "Oops....",
-					text: "Please enter tracking number!"
-				});
-				return false;
-			}
+			// if (document.getElementById("trackingNumber").value == "") {
+			// 	Swal.fire({
+			// 		icon: "error",
+			// 		title: "Oops....",
+			// 		text: "Please enter tracking number!"
+			// 	});
+			// 	return false;
+			// }
 			if (document.getElementById("carrier").value == "") {
 				Swal.fire({
 					icon: "error",

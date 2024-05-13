@@ -19,12 +19,17 @@
 	<link rel="stylesheet" href="~/lib/css/app-light.css" id="lightTheme" />
 	@* Toastr *@
 	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" />
+	@* Syncfusion *@
+	<link href="https://cdn.syncfusion.com/ej2/25.1.35/bootstrap5.css" rel="stylesheet" />
 
 	<link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+
+	@* CDN script syncfusion *@
+	<script src="https://cdn.syncfusion.com/ej2/25.1.35/dist/ej2.min.js"></script>
 </head>
 <body class="vertical light hover">
 	<div class="wrapper">
-		<nav class="topnav navbar navbar-light" style="background-color: #ffffff">
+		<nav class="topnav navbar navbar-light sticky-top" style="background-color: #ffffff">
 			<button type="button" class="navbar-toggler text-muted mt-2 p-0 mr-3 collapseSidebar">
 				<i class="bi bi-list"></i>
 			</button>
@@ -63,7 +68,7 @@
 				<ul class="navbar-nav flex-fill w-100 mb-2">
 					<li class="nav-item w-100">
 						<a asp-area="Customer" asp-controller="Home" asp-action="Index" class="nav-link">
-							<i class="bi bi-house-fill"></i>
+							<i class="bi bi-house"></i>
 							<span class="ml-3 item-text">Home</span>
 						</a>
 					</li>
@@ -80,25 +85,25 @@
 				<ul class="navbar-nav flex-fill w-100 mb-2">
 					<li class="nav-item w-100">
 						<a class="nav-link" asp-area="Admin" asp-controller="Product" asp-action="Index">
-							<i class="bi bi-box-seam-fill"></i>
+							<i class="bi bi-box-seam"></i>
 							<span class="ml-3 item-text">Product</span>
 						</a>
 					</li>
 					<li class="nav-item w-100">
 						<a class="nav-link" asp-area="Admin" asp-controller="Category" asp-action="Index">
-							<i class="bi bi-grid-fill"></i>
+							<i class="bi bi-grid"></i>
 							<span class="ml-3 item-text">Category</span>
 						</a>
 					</li>
 					<li class="nav-item w-100">
 						<a class="nav-link" asp-area="Admin" asp-controller="Order" asp-action="Index">
-							<i class="bi bi-bag-fill"></i>
+							<i class="bi bi-bag"></i>
 							<span class="ml-3 item-text">Order</span>
 						</a>
 					</li>
 					<li class="nav-item w-100">
 						<a class="nav-link" asp-area="Admin" asp-controller="User" asp-action="Index">
-							<i class="bi bi-people-fill"></i>
+							<i class="bi bi-people"></i>
 							<span class="ml-3 item-text">User</span>
 						</a>
 					</li>
@@ -108,7 +113,7 @@
 					<li class="nav-item w-100">
 						<form method="post" asp-area="Account" asp-controller="Auth" asp-action="LogoutAPI">
 							<button id="logout" type="submit" class="nav-link btn btn-link w-100 text-left border-0">
-								<i class="bi bi-box-arrow-right"></i>
+								<i class="bi bi-box-arrow-right" style="font-weight:500"></i>
 								<span class="ml-3 item-text">Logout</span>
 							</button>
 						</form>
@@ -142,5 +147,6 @@
 	@* Tinymce *@
 	<script src="https://cdn.tiny.cloud/1/7p1vkmumjx1vd9oo212x4qhbns8lvbk16ltwhhh2uryq0s2w/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
 	@await RenderSectionAsync("Scripts", required: false)
+	<ejs-scripts></ejs-scripts>
 </body>
 </html>

@@ -208,12 +208,20 @@ namespace FoodWagon.WebApp.Areas.Customer.Controllers {
 				}
 			}
 
-			OrderVM orderVm = new() {
+			OrderVM orderVM = new() {
 				OrderHeader = orderHeader,
 				OrderDetail = _unitOfWork.OrderDetail.GetAll(x => x.OrderHeaderId == id, includeProperties: "Product")
 			};
 
-			return View(orderVm);
+			IEnumerable<ProductImage> productImages = _unitOfWork.ProductImage.GetAll();
+
+			foreach (var cart in orderVM.OrderDetail) {
+				cart.Product.ProductImages = productImages.Where(x => x.ProductId == cart.ProductId).ToList();
+				cart.Price = cart.Product.Price - (cart.Product.Price * cart.Product.SaleOff / 100);
+				orderVM.OrderHeader.OrderTotal += (cart.Price * cart.Count);
+			}
+
+			return View(orderVM);
 		}
 	}
 }
