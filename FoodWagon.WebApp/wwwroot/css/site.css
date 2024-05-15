@@ -124,3 +124,43 @@ table.dataTable td.dt-type-date {
 .vertical .wrapper #leftSidebar {
     z-index: 9999999999 !important;
 }
+
+/* Grid */
+.e-grid {
+    border: 0;
+    border-radius: 12px;
+}
+
+    .e-grid .e-gridcontent,
+    .e-grid .e-table {
+        background-color: #fff;
+    }
+
+    .e-grid .e-gridheader {
+        border: 5px;
+        border-top-left-radius: 12px;
+        border-top-right-radius: 12px;
+        padding: 10px;
+        background-color: #fff;
+    }
+
+        .e-grid .e-gridheader .e-headercell {
+            background-color: #fff;
+        }
+
+.e-content .e-table {
+    padding: 5px 10px
+}
+
+.e-gridpager {
+    background-color: #fff;
+}
+
+.e-link.e-active {
+    background-color: #86b7fe !important;
+    color: #fff;
+}
+
+    .e-link.e-active:hover {
+        color: #fff;
+    }

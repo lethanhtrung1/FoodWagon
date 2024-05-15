@@ -93,8 +93,63 @@
 							<strong class="card-title mb-0">Line Chart</strong>
 						</div>
 						<div class="card-body">
-							<canvas id="pieChartjs" width="400" height="300"></canvas>
+							@* <canvas id="pieChartjs" width="400" height="300"></canvas> *@
+							<ejs-chart id="spline-chart" palettes=@(new string[] {"#54ffa9", "#FC4100"})>
+								<e-chart-primaryxaxis valueType="Category">
+									<e-majorgridlines width="0"></e-majorgridlines>
+									<e-majorticklines width="0"></e-majorticklines>
+								</e-chart-primaryxaxis>
+								<e-chart-primaryyaxis>
+									<e-majorgridlines width="1" color="#EEEEEE" dashArray="3,5"></e-majorgridlines>
+									<e-majorticklines width="0"></e-majorticklines>
+									<e-linestyle width="0"></e-linestyle>
+								</e-chart-primaryyaxis>
+								<e-chart-chartarea>
+									<e-chartarea-border width="0"></e-chartarea-border>
+								</e-chart-chartarea>
+								<e-series-collection>
+									<e-series dataSource="@ViewBag.SplineChartData" xName="day" yName="total" name="Total" width="2"
+											  type="@Syncfusion.EJ2.Charts.ChartSeriesType.Spline"></e-series>
+									@* <e-series dataSource="@ViewBag.SplineChartData" xName="day" yName="expense" name="Expense" width="2"
+									type="@Syncfusion.EJ2.Charts.ChartSeriesType.Spline"></e-series> *@
+								</e-series-collection>
+								<e-chart-legendsettings position="Top" toggleVisibility="true">
+									<e-legendsettings-textstyle size="1rem"></e-legendsettings-textstyle>
+								</e-chart-legendsettings>
+								<e-chart-tooltipsettings enable shared></e-chart-tooltipsettings>
+							</ejs-chart>
 						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="row justify-content-center">
+		<div class="col-12">
+			<div class="row">
+				<div class="col-md-9 mb-4">
+					<div class="card shadow">
+						<div class="card-header">
+							<strong class="card-title mb-0">Recent Orders</strong>
+						</div>
+						<div class="card-body">
+							<ejs-grid id="recent-orders" dataSource="@ViewBag.RecentOrders" gridLines="None" border="0">
+								<e-grid-columns>
+									<e-grid-column headerText="Name" field="Name"></e-grid-column>
+									<e-grid-column headerText="Status" field="OrderStatus"></e-grid-column>
+									<e-grid-column headerText="Total Price" field="OrderTotal" format="c0" width="90px" textAlign="Center"></e-grid-column>
+									<e-grid-column headerText="Address" field="StreetAddress" width="200px"></e-grid-column>
+									<e-grid-column headerText="Payment Method" field="PaymentMethod"></e-grid-column>
+									<e-grid-column headerText="Order Date" field="OrderDate" type="date" format="MM-dd-yyyy" textAlign="Left"></e-grid-column>
+								</e-grid-columns>
+							</ejs-grid>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-3" style="height: 321px">
+					<div class="card shadow h-100 d-flex justify-content-center align-items-center">
+						<i class="bi bi-cash-coin" style="font-size: 40opx"></i>
 					</div>
 				</div>
 			</div>
