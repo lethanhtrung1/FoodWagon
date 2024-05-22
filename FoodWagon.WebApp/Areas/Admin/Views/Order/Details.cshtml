@@ -107,7 +107,7 @@
 							<div class="form-group col-12">
 								<label style="font-size:14px">Carrier</label>
 								@if (User.IsInRole(SD.Role_Admin) || User.IsInRole(SD.Role_Employee)) {
-									<input asp-for="OrderHeader.Carrier" type="text" id="carrier" class="form-control" />
+									<input asp-for="OrderHeader.Carrier" required type="text" id="carrier" class="form-control" />
 								} else {
 									<input asp-for="OrderHeader.Carrier" readonly type="text" class="form-control" />
 								}

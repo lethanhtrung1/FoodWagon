@@ -1,5 +1,4 @@
-﻿using FoodWagon.DataAccess.Repository;
-using FoodWagon.DataAccess.Repository.IRepository;
+﻿using FoodWagon.DataAccess.Repository.IRepository;
 using FoodWagon.Models.Models;
 using FoodWagon.Models.ViewModels;
 using FoodWagon.Utility;

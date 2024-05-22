@@ -20,7 +20,7 @@ namespace FoodWagon.WebApp.Areas.Admin.Controllers {
 
 		public IActionResult Index() {
 			DateTime StartDate = DateTime.Today.AddDays(-6);
-			DateTime EndDate = DateTime.Today;
+			DateTime EndDate = DateTime.Today.AddDays(1);
 
 			var orders = _unitOfWork.OrderHeader.GetAll(x => x.OrderStatus != SD.OrderCancelled).ToList();
 
